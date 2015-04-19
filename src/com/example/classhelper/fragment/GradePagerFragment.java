@@ -11,8 +11,10 @@ import com.example.classhelper.model.Test;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.print.PrintManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
 import android.text.Editable;
@@ -217,5 +219,18 @@ public class GradePagerFragment extends Fragment
 		// TODO Auto-generated method stub
 		
 	}
+	
+	private void doPrint() 
+	{
+	    // Get a PrintManager instance
+	    PrintManager printManager = (PrintManager) getActivity()
+	            .getSystemService(Context.PRINT_SERVICE);
 
+	    // Set job name, which will be displayed in the print queue
+	    String jobName = getActivity().getString(R.string.app_name) + " Document";
+
+	    // Start a print job, passing in a PrintDocumentAdapter implementation
+	    // to handle the generation of a print document
+	    printManager.print(jobName, new MyPrintDocumentAdapter(getActivity()), null); //
+	}
 }
