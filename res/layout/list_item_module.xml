@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_activated" >
+	
+	<TextView 
+	    android:id="@+id/module_list_item_name"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:paddingLeft="4dp"
+	    android:paddingRight="4dp"
+	    android:paddingBottom="15dp"
+	    android:text="Name"/>
+</RelativeLayout>

@@ -1,0 +1,13 @@
+<resources>
+
+    <!--
+        Base application theme for API 11+. This theme completely replaces
+        AppBaseTheme from res/values/styles.xml on API 11+ devices.
+    -->
+    <!-- ༼つ ◕_◕ ༽つ Changed parent attribute value from Theme.AppCompat.Light to android:Theme.Holo.Light
+    in order to use ActionBar whene minSdk is 8 ༼つ ◕_◕ ༽つ-->
+    <style name="AppBaseTheme" parent="android:Theme.Holo.Light">
+        <!-- API 11 theme customizations can go here. -->
+    </style>
+
+</resources>

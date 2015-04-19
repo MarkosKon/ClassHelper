@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <TextView 
+        android:id="@+id/test_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/model_id_label"
+        style="?android:listSeparatorTextViewStyle"/>
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/test_name_label"
+        style="?android:listSeparatorTextViewStyle"/>
+    
+    <EditText 
+        android:id="@+id/test_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/test_name_hint"/>
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/test_notes_label"
+        style="?android:listSeparatorTextViewStyle"/>
+    
+    <EditText 
+        android:id="@+id/test_notes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:lines="3"
+        android:hint="@string/test_notes_hint"/>
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/test_course_id_label"
+        style="?android:listSeparatorTextViewStyle"/>
+    
+    <Spinner 
+        android:id="@+id/test_course_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    
+    <Button 
+        android:id="@+id/test_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:text="@string/model_save_label"/>
+
+</LinearLayout>
