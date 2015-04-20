@@ -8,11 +8,13 @@ import com.example.classhelper.activity.GradeListActivity;
 import com.example.classhelper.activity.ModuleListActivity;
 import com.example.classhelper.activity.StudentListActivity;
 import com.example.classhelper.activity.TestListActivity;
+import com.example.classhelper.adapter.MainMenuAdapter;
 import com.example.classhelper.data.CourseDAO;
 import com.example.classhelper.data.ModuleDAO;
 import com.example.classhelper.data.StudentDAO;
 import com.example.classhelper.data.TestDAO;
 import com.example.classhelper.model.Course;
+import com.example.classhelper.model.MainMenuItem;
 import com.example.classhelper.model.Module;
 import com.example.classhelper.model.Student;
 import com.example.classhelper.model.Test;
@@ -23,7 +25,6 @@ import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -31,24 +32,24 @@ public class MainMenuFragment extends ListFragment
 {
 	public static final String TAG = "MainMenuFragment";
 	
-	private ArrayList<String> mMenuItems = new ArrayList<String>();
+	private ArrayList<MainMenuItem> mMenuItems = new ArrayList<MainMenuItem>();
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 
-		mMenuItems.add(getResources().getString(R.string.module_crud));
-		mMenuItems.add(getResources().getString(R.string.course_crud));
-		mMenuItems.add(getResources().getString(R.string.student_crud));
-		mMenuItems.add(getResources().getString(R.string.test_crud));
-		mMenuItems.add(getResources().getString(R.string.grade_crud));
+		mMenuItems.add(new MainMenuItem(getResources().getString(R.string.module_crud), android.R.drawable.ic_menu_agenda));
+		mMenuItems.add(new MainMenuItem(getResources().getString(R.string.course_crud), android.R.drawable.ic_menu_agenda));
+		mMenuItems.add(new MainMenuItem(getResources().getString(R.string.student_crud), R.drawable.ic_menu_cc_am));
+		mMenuItems.add(new MainMenuItem(getResources().getString(R.string.test_crud), R.drawable.ic_menu_compose));
+		mMenuItems.add(new MainMenuItem(getResources().getString(R.string.grade_crud), android.R.drawable.ic_menu_edit));
 		
 		setHasOptionsMenu(true);
 		getActivity().setTitle(R.string.main_menu_title);
 		
-		ArrayAdapter<String> adapter = 
-				new ArrayAdapter<String>(getActivity(), R.layout.simple_list_item_1, mMenuItems);
+
+		MainMenuAdapter adapter = new MainMenuAdapter(mMenuItems, getActivity());
 		setListAdapter(adapter);
 		
 		setRetainInstance(true);
@@ -69,8 +70,9 @@ public class MainMenuFragment extends ListFragment
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id)
 	{
-		String s = (String) getListAdapter().getItem(position);
-		if (s.equals(getResources().getString(R.string.student_crud)))
+		MainMenuItem m = (MainMenuItem) getListAdapter().getItem(position);
+		
+		if (m.getTitle().equals(getResources().getString(R.string.student_crud)))
 		{
 			ArrayList<Module> modules = ModuleDAO.get(getActivity()).getAllModules();
 			if (modules.size() == 0)
@@ -86,7 +88,7 @@ public class MainMenuFragment extends ListFragment
 				startActivity(i);
 			}
 		}
-		else if(s.equals(getResources().getString(R.string.test_crud)))
+		else if(m.getTitle().equals(getResources().getString(R.string.test_crud)))
 		{
 			ArrayList<Course> courses = CourseDAO.get(getActivity()).getAllCourses();
 			if (courses.size() == 0)
@@ -102,7 +104,7 @@ public class MainMenuFragment extends ListFragment
 				startActivity(i);
 			}
 		}
-		else if(s.equals(getResources().getString(R.string.grade_crud)))
+		else if(m.getTitle().equals(getResources().getString(R.string.grade_crud)))
 		{
 			ArrayList<Student> students = StudentDAO.get(getActivity()).getAllStudents();
 			ArrayList<Test> tests = TestDAO.get(getActivity()).getAllTests();
@@ -124,7 +126,7 @@ public class MainMenuFragment extends ListFragment
 				startActivity(i);
 			}
 		}
-		else if(s.equals(getResources().getString(R.string.course_crud)))
+		else if(m.getTitle().equals(getResources().getString(R.string.course_crud)))
 		{
 			ArrayList<Module> modules = ModuleDAO.get(getActivity()).getAllModules();
 			if (modules.size() == 0)
@@ -139,18 +141,16 @@ public class MainMenuFragment extends ListFragment
 				startActivity(i);	
 			}
 		}
-		else if(s.equals(getResources().getString(R.string.module_crud)))
+		else if(m.getTitle().equals(getResources().getString(R.string.module_crud)))
 		{
 			Intent i = new Intent(getActivity(), ModuleListActivity.class);
 			startActivity(i);
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public void onResume()
 	{
 		super.onResume();
-		((ArrayAdapter<String>) getListAdapter()).notifyDataSetChanged();
 	}
 }
