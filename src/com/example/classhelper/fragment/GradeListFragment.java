@@ -177,7 +177,7 @@ public class GradeListFragment extends ModelListFragment<Grade>
 		return R.string.grade_crud;
 	}
 	
-	private void updateAdapter()
+	public void updateAdapter()
 	{
 		mModel = GradeDAO.get(getActivity()).getAllGrades();
 		GradeAdapter gradeAdapter = new GradeAdapter(mModel);

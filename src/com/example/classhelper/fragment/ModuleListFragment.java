@@ -183,7 +183,7 @@ public class ModuleListFragment extends ModelListFragment<Module>
 		return R.string.module_crud;
 	}
 	
-	private void updateAdapter()
+	public void updateAdapter()
 	{
 		mModel = ModuleDAO.get(getActivity()).getAllModules();
 		ModuleAdapter moduleAdapter = new ModuleAdapter(mModel);

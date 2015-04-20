@@ -21,7 +21,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
@@ -187,7 +186,7 @@ public class StudentListFragment extends ModelListFragment<Student>
 	 * we do not know what happened to the database. It is not elegant
 	 * but i can't think of something better.
 	 */
-	private void updateAdapter()
+	public void updateAdapter()
 	{
 		mModel = StudentDAO.get(getActivity()).getAllStudents();
 		StudentAdapter studentAdapter = new StudentAdapter(mModel);

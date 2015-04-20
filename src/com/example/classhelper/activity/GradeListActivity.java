@@ -1,6 +1,7 @@
 package com.example.classhelper.activity;
 
 import com.example.classhelper.R;
+import com.example.classhelper.data.GradeDAO;
 import com.example.classhelper.fragment.GradeListFragment;
 import com.example.classhelper.fragment.GradePagerFragment;
 import com.example.classhelper.model.Grade;
@@ -10,9 +11,10 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.widget.Toast;
 
 public class GradeListActivity extends ModelListActivity
-	implements Callbacks<Grade>
+	implements Callbacks<Grade>, GradePagerFragment.Callbacks
 {
 	public static final String TAG = "GradeListActivity";
 	
@@ -48,4 +50,18 @@ public class GradeListActivity extends ModelListActivity
 		}
 	}
 
+	@Override
+	public void onListItemUpdate(Grade grade) 
+	{
+		int gradeExists = GradeDAO.get(getApplicationContext()).update(grade);
+		if (gradeExists == 0)
+			GradeDAO.get(getApplicationContext()).insert(grade);
+		Toast toast = Toast.makeText(this, "Item saved", Toast.LENGTH_SHORT);
+		toast.show();
+		
+		FragmentManager fm = getSupportFragmentManager();
+		GradeListFragment listFragment = (GradeListFragment)
+		fm.findFragmentById(R.id.fragmentContainer);
+		listFragment.updateAdapter();
+	}
 }

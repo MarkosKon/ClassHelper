@@ -1,6 +1,7 @@
 package com.example.classhelper.activity;
 
 import com.example.classhelper.R;
+import com.example.classhelper.data.TestDAO;
 import com.example.classhelper.fragment.TestListFragment;
 import com.example.classhelper.fragment.TestPagerFragment;
 import com.example.classhelper.model.Test;
@@ -10,9 +11,10 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.widget.Toast;
 
 public class TestListActivity extends ModelListActivity 
-	implements Callbacks<Test>
+	implements Callbacks<Test>, TestPagerFragment.Callbacks
 {
 	public static final String TAG = "TestListActivity";
 	@Override
@@ -46,5 +48,18 @@ public class TestListActivity extends ModelListActivity
 			ft.commit();
 		}
 	}
-
+	@Override
+	public void onListItemUpdate(Test test) 
+	{
+		int testExists = TestDAO.get(getApplicationContext()).update(test);
+		if (testExists == 0)
+			TestDAO.get(getApplicationContext()).insert(test);
+		Toast toast = Toast.makeText(this, "Item saved", Toast.LENGTH_SHORT);
+		toast.show();
+		
+		FragmentManager fm = getSupportFragmentManager();
+		TestListFragment listFragment = (TestListFragment)
+		fm.findFragmentById(R.id.fragmentContainer);
+		listFragment.updateAdapter();
+	}
 }

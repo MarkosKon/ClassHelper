@@ -171,7 +171,7 @@ public class TestListFragment extends ModelListFragment<Test>
 		return super.onContextItemSelected(item);
 	}
 	
-	private void updateAdapter()
+	public void updateAdapter()
 	{
 		mModel = TestDAO.get(getActivity()).getAllTests();
 		TestAdapter testAdapter = new TestAdapter(mModel);

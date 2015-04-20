@@ -180,7 +180,7 @@ public class CourseListFragment extends ModelListFragment<Course>
 		return R.string.course_crud;
 	}
 	
-	private void updateAdapter()
+	public void updateAdapter()
 	{
 		mModel = CourseDAO.get(getActivity()).getAllCourses();
 		CourseAdapter courseAdapter = new CourseAdapter(mModel);

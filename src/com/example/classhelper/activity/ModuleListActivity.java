@@ -1,6 +1,7 @@
 package com.example.classhelper.activity;
 
 import com.example.classhelper.R;
+import com.example.classhelper.data.ModuleDAO;
 import com.example.classhelper.fragment.ModuleListFragment;
 import com.example.classhelper.fragment.ModulePagerFragment;
 import com.example.classhelper.model.Module;
@@ -10,9 +11,10 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.widget.Toast;
 
 public class ModuleListActivity extends ModelListActivity 
-	implements Callbacks<Module>
+	implements Callbacks<Module>, ModulePagerFragment.CallBacks
 {
 	public static final String TAG = "ModuleListActivity";
 	
@@ -47,6 +49,21 @@ public class ModuleListActivity extends ModelListActivity
 			ft.add(R.id.detailFragmentContainer, newDetail);
 			ft.commit();
 		}
+	}
+
+	@Override
+	public void onListItemUpdate(Module module) 
+	{
+		int moduleExists = ModuleDAO.get(getApplicationContext()).update(module);
+		if (moduleExists == 0)
+			ModuleDAO.get(getApplicationContext()).insert(module);
+		Toast toast = Toast.makeText(this, "Item saved", Toast.LENGTH_SHORT);
+		toast.show();
+		
+		FragmentManager fm = getSupportFragmentManager();
+		ModuleListFragment listFragment = (ModuleListFragment)
+		fm.findFragmentById(R.id.fragmentContainer);
+		listFragment.updateAdapter();
 	}
 
 }
