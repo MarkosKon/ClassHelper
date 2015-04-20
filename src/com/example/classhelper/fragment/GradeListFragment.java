@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
+import android.widget.Filterable;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
@@ -184,7 +185,7 @@ public class GradeListFragment extends ModelListFragment<Grade>
 		setListAdapter(gradeAdapter);
 	}
 	
-	private class GradeAdapter extends ArrayAdapter<Grade>
+	private class GradeAdapter extends ArrayAdapter<Grade> implements Filterable
 	{
 		public GradeAdapter(ArrayList<Grade> grades)
 		{

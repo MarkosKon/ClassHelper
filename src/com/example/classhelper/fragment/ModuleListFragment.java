@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
+import android.widget.Filterable;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
@@ -190,7 +191,7 @@ public class ModuleListFragment extends ModelListFragment<Module>
 		setListAdapter(moduleAdapter);
 	}
 	
-	private class ModuleAdapter extends ArrayAdapter<Module>
+	private class ModuleAdapter extends ArrayAdapter<Module> implements Filterable
 	{
 		public ModuleAdapter(ArrayList<Module> modules)
 		{

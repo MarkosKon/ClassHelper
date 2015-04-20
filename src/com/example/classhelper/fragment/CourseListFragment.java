@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
+import android.widget.Filterable;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
@@ -62,7 +63,7 @@ public class CourseListFragment extends ModelListFragment<Course>
 		
 		// p.349. 
 		ListView listView = (ListView)v.findViewById(android.R.id.list);
-		
+				
 		// p.353.
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB)
 		{
@@ -187,7 +188,7 @@ public class CourseListFragment extends ModelListFragment<Course>
 		setListAdapter(courseAdapter);
 	}
 	
-	private class CourseAdapter extends ArrayAdapter<Course>
+	private class CourseAdapter extends ArrayAdapter<Course> implements Filterable
 	{
 		public CourseAdapter(ArrayList<Course> courses)
 		{

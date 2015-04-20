@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
+import android.widget.Filterable;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
@@ -184,7 +185,7 @@ public class TestListFragment extends ModelListFragment<Test>
 		return R.string.test_crud;
 	}
 	
-	private class TestAdapter extends ArrayAdapter<Test>
+	private class TestAdapter extends ArrayAdapter<Test> implements Filterable
 	{
 		public TestAdapter(ArrayList<Test> tests)
 		{

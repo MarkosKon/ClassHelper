@@ -6,7 +6,6 @@
     android:paddingTop="2dip"
     android:paddingBottom="15dip"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content">
     
-
 </TextView>

@@ -6,11 +6,11 @@
     
     <string name="main_menu_title">Main Menu</string>
     
-    <string name="student_crud">CRUD Student</string>
-    <string name="test_crud">CRUD Test</string>
-    <string name="grade_crud">CRUD Grade</string>
-    <string name="course_crud">CRUD Course</string>
-    <string name="module_crud">CRUD Module</string>
+    <string name="student_crud">Students</string>
+    <string name="test_crud">Tests</string>
+    <string name="grade_crud">Grades</string>
+    <string name="course_crud">Courses</string>
+    <string name="module_crud">Modules</string>
     
     <string name="create_model">Create new item</string>
     <string name="delete_model">Delete</string>

@@ -57,6 +57,6 @@ public class Student extends Model implements Serializable
 	@Override
 	public String toString()
 	{
-		return mFirstName + mLastName;
+		return mLastName + " " + mFirstName;
 	}
 }

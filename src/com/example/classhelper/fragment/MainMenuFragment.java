@@ -58,6 +58,11 @@ public class MainMenuFragment extends ListFragment
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		View v = super.onCreateView(inflater, container, savedInstanceState);
+		
+		// If the device has hardware keyboard, the user can search the items.
+		ListView listView = (ListView) v.findViewById(android.R.id.list);
+		listView.setTextFilterEnabled(true); 
+		
 		return v;
 	}
 	
@@ -65,7 +70,7 @@ public class MainMenuFragment extends ListFragment
 	public void onListItemClick(ListView l, View v, int position, long id)
 	{
 		String s = (String) getListAdapter().getItem(position);
-		if (s.equals("CRUD Student"))
+		if (s.equals(getResources().getString(R.string.student_crud)))
 		{
 			ArrayList<Module> modules = ModuleDAO.get(getActivity()).getAllModules();
 			if (modules.size() == 0)
@@ -81,7 +86,7 @@ public class MainMenuFragment extends ListFragment
 				startActivity(i);
 			}
 		}
-		else if(s.equals("CRUD Test"))
+		else if(s.equals(getResources().getString(R.string.test_crud)))
 		{
 			ArrayList<Course> courses = CourseDAO.get(getActivity()).getAllCourses();
 			if (courses.size() == 0)
@@ -97,7 +102,7 @@ public class MainMenuFragment extends ListFragment
 				startActivity(i);
 			}
 		}
-		else if(s.equals("CRUD Grade"))
+		else if(s.equals(getResources().getString(R.string.grade_crud)))
 		{
 			ArrayList<Student> students = StudentDAO.get(getActivity()).getAllStudents();
 			ArrayList<Test> tests = TestDAO.get(getActivity()).getAllTests();
@@ -119,7 +124,7 @@ public class MainMenuFragment extends ListFragment
 				startActivity(i);
 			}
 		}
-		else if(s.equals("CRUD Course"))
+		else if(s.equals(getResources().getString(R.string.course_crud)))
 		{
 			ArrayList<Module> modules = ModuleDAO.get(getActivity()).getAllModules();
 			if (modules.size() == 0)
@@ -134,7 +139,7 @@ public class MainMenuFragment extends ListFragment
 				startActivity(i);	
 			}
 		}
-		else if(s.equals("CRUD Module"))
+		else if(s.equals(getResources().getString(R.string.module_crud)))
 		{
 			Intent i = new Intent(getActivity(), ModuleListActivity.class);
 			startActivity(i);
