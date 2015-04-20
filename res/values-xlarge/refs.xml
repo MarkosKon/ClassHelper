@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- p.441 The same with res/values-sw600dp but for older Android tablets. -->
+<resources>
+    
+    <item name="activity_masterdetail" type="layout">@layout/activity_twopane</item>
+    
+</resources>
