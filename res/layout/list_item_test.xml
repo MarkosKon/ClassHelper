@@ -10,6 +10,7 @@
 	    android:layout_height="wrap_content"
 	    android:paddingLeft="4dp"
 	    android:paddingRight="4dp"
+	    android:paddingTop="15dp"
 	    android:paddingBottom="15dp"
 	    android:text="Test Name"/>
 </RelativeLayout>
