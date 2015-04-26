@@ -1,13 +1,11 @@
 package com.example.classhelper.fragment;
 
-import java.util.ArrayList;
-
 import com.example.classhelper.R;
+import com.example.classhelper.adapter.StudentAdapter;
 import com.example.classhelper.data.StudentDAO;
 import com.example.classhelper.model.Student;
 import com.example.classhelper.myinterface.Callbacks;
 
-import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.os.Build;
@@ -20,10 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
-import android.widget.ArrayAdapter;
-import android.widget.Filterable;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 
 public class StudentListFragment extends ModelListFragment<Student> 
@@ -190,38 +185,7 @@ public class StudentListFragment extends ModelListFragment<Student>
 	public void updateAdapter()
 	{
 		mModel = StudentDAO.get(getActivity()).getAllStudents();
-		StudentAdapter studentAdapter = new StudentAdapter(mModel);
+		StudentAdapter studentAdapter = new StudentAdapter(mModel, getActivity());
 		setListAdapter(studentAdapter);
-	}
-	
-	private class StudentAdapter extends ArrayAdapter<Student> implements Filterable
-	{
-		public StudentAdapter(ArrayList<Student> students)
-		{
-			super(getActivity(), android.R.layout.simple_list_item_1, students);
-		}
-		
-		@SuppressLint("InflateParams")
-		@Override 
-		public View getView(int position, View convertView, ViewGroup parent)
-		{
-			// If we weren't given a view, inflate one.
-			if (convertView == null)
-				convertView = getActivity().getLayoutInflater()
-					.inflate(R.layout.list_item_student, null);
-			
-			// Configure the view for this crime.
-			Student s = getItem(position);
-			
-			TextView firstNameTextView = 
-					(TextView) convertView.findViewById(R.id.student_list_item_firstName);
-			firstNameTextView.setText(s.getFirstName());
-			
-			TextView lastNameTextView = 
-					(TextView) convertView.findViewById(R.id.student_list_item_lastName);
-			lastNameTextView.setText(s.getLastName());
-			
-			return convertView;
-		}
 	}
 }

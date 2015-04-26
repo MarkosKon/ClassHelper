@@ -1,8 +1,10 @@
 package com.example.classhelper.fragment;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import com.example.classhelper.R;
+import com.example.classhelper.adapter.StudentAdapter;
 import com.example.classhelper.data.StudentDAO;
 import com.example.classhelper.data.TestDAO;
 import com.example.classhelper.model.Grade;
@@ -118,21 +120,36 @@ public class GradePagerFragment extends Fragment
 		// Setup a spinner with the available last names of the students.
 		mStudentSpinner = (Spinner) v.findViewById(R.id.grade_student_id);
 		ArrayList<Student> students = StudentDAO.get(getActivity()).getAllStudents();
-		ArrayList<String> studentNames = new ArrayList<String>();
+		//ArrayList<String> studentNames = new ArrayList<String>();
+		//for (Student s : students)
+		//{
+			//studentNames.add(s.getLastName());
+		//}
+		// Position first on the list grade's current student.
+		int i =0;
 		for (Student s : students)
 		{
-			studentNames.add(s.getLastName());
+			if (mGrade.getStudent().getId() == s.getId())
+			{
+				Collections.swap(students, 0, i);
+				//students.remove(s);
+				//students.add(0, s);
+			}
+			i++;
 		}
-		if (mGrade.getStudent().getLastName() != null)
-		{
-			studentNames.remove(mGrade.getStudent().getLastName());
-			studentNames.add(0, mGrade.getStudent().getLastName());
-		}
+		//if (mGrade.getStudent().getLastName() != null)
+		//{
+			//studentNames.remove(mGrade.getStudent().getLastName());
+			//studentNames.add(0, mGrade.getStudent().getLastName());
+		//}
 		
-		ArrayAdapter<String> spinnerAdapter	= new ArrayAdapter<String>(getActivity(),
-				android.R.layout.simple_spinner_item, studentNames);
-		spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		mStudentSpinner.setAdapter(spinnerAdapter);
+		StudentAdapter studentAdapter = new StudentAdapter(students, getActivity());
+		//studentAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		//ArrayAdapter<String> spinnerAdapter	= new ArrayAdapter<String>(getActivity(),
+			//	android.R.layout.simple_spinner_item, studentNames);
+		//spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		//mStudentSpinner.setAdapter(spinnerAdapter);
+		mStudentSpinner.setAdapter(studentAdapter);
 		mStudentSpinner.setOnItemSelectedListener(this);
 		
 		// Setup a spinner with the available names of the tests.
@@ -193,6 +210,9 @@ public class GradePagerFragment extends Fragment
 		return fragment;
 	}
 	
+	/**
+	 *  Spinner Listener Method. 
+	*/
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int position,
 			long id) 
@@ -200,8 +220,7 @@ public class GradePagerFragment extends Fragment
 		Spinner spinner = (Spinner) parent;
 		if (spinner.getId() == R.id.grade_student_id)
 		{
-			Student student = StudentDAO.get(getActivity())
-					.getStudentByLastName(parent.getItemAtPosition(position).toString());
+			Student student = (Student) parent.getItemAtPosition(position);
 			mGrade.setStudent(student);
 		}
 		else if (spinner.getId() == R.id.grade_test_id)
