@@ -69,7 +69,7 @@ public abstract class ModelListFragment<T> extends ListFragment
 	public void onActivityCreated (Bundle savedInstanceState)
 	{
 		super.onActivityCreated(savedInstanceState);
-		setEmptyText("There are no items to display");
+		setEmptyText(getResources().getString(R.string.empty_list_view));
 	}
 	
 	@Override

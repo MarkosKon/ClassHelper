@@ -41,6 +41,6 @@
     <string name="grade_student_id_label">Student</string>
     <string name="grade_test_id_label">Test</string>
     
-    <string name="empty_list_view">There are no items in the list</string>
+    <string name="empty_list_view">There are no items to display</string>
 
 </resources>
