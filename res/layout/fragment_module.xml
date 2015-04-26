@@ -4,12 +4,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
+    <!-- Module ID -->
+    
     <TextView 
         android:id="@+id/module_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/model_id_label"
         style="?android:listSeparatorTextViewStyle"/>
+    
+    <!-- Module Name -->
     
     <TextView 
         android:layout_width="match_parent"
@@ -22,6 +26,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/module_name_hint"/>
+    
+    <!-- Save / Create module button -->
     
     <Button 
         android:id="@+id/module_save"

@@ -1,56 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
-    
-    <TextView 
-        android:id="@+id/grade_id"
+ <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/model_id_label"
-        style="?android:listSeparatorTextViewStyle"/>
-    
-    <TextView 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/grade_value_label"
-        style="?android:listSeparatorTextViewStyle"/>
-    
-    <EditText 
-        android:id="@+id/grade_grade_value"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:digits="0123456789"/>
-    
-    <TextView 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/grade_student_id_label"
-        style="?android:listSeparatorTextViewStyle"/>
-    
-    <Spinner 
-        android:id="@+id/grade_student_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    
-    <TextView 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/grade_test_id_label"
-        style="?android:listSeparatorTextViewStyle"/>
-    
-    <Spinner 
-        android:id="@+id/grade_test_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    
-    <Button 
-        android:id="@+id/grade_save"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:text="@string/model_save_label"/>
-
-</LinearLayout>
+        android:layout_height="match_parent">
+	<LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical" >
+	    
+	    <!-- Grade ID -->
+	    
+	    <TextView 
+	        android:id="@+id/grade_id"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/model_id_label"
+	        style="?android:listSeparatorTextViewStyle"/>
+	    
+	    <!-- Grade Value -->
+	    
+	    <TextView 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/grade_value_label"
+	        style="?android:listSeparatorTextViewStyle"/>
+	    
+	    <EditText 
+	        android:id="@+id/grade_grade_value"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:digits="0123456789"/>
+	    
+	    <!-- Grade Student -->
+	    
+	    <TextView 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/grade_student_id_label"
+	        style="?android:listSeparatorTextViewStyle"/>
+	    
+	    <Spinner 
+	        android:id="@+id/grade_student_id"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"/>
+	    
+	    <!-- Grade Test -->
+	    
+	    <TextView 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/grade_test_id_label"
+	        style="?android:listSeparatorTextViewStyle"/>
+	    
+	    <Spinner 
+	        android:id="@+id/grade_test_id"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"/>
+	    
+	    <!-- Save / Create grade button -->
+	    
+	    <Button 
+	        android:id="@+id/grade_save"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="16dp"
+	        android:layout_marginRight="16dp"
+	        android:text="@string/model_save_label"/>
+	
+	</LinearLayout>
+	
+</ScrollView>

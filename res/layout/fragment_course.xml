@@ -4,12 +4,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
+    <!-- Course ID -->
+    
     <TextView 
         android:id="@+id/course_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/model_id_label"
         style="?android:listSeparatorTextViewStyle"/>
+    
+    <!-- Course Name -->
     
     <TextView 
         android:layout_width="match_parent"
@@ -23,6 +27,8 @@
         android:layout_height="wrap_content"
         android:hint="@string/course_name_hint"/>
     
+    <!-- Course Module -->
+    
     <TextView 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,6 +39,8 @@
         android:id="@+id/course_module_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+    
+    <!-- Save / Create course button -->
     
     <Button 
         android:id="@+id/course_save"
