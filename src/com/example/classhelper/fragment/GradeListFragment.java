@@ -1,8 +1,5 @@
 package com.example.classhelper.fragment;
 
-import java.util.ArrayList;
-
-import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.os.Build;
@@ -15,13 +12,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
-import android.widget.ArrayAdapter;
-import android.widget.Filterable;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 
 import com.example.classhelper.R;
+import com.example.classhelper.adapter.GradeAdapter;
 import com.example.classhelper.data.GradeDAO;
 import com.example.classhelper.model.Grade;
 import com.example.classhelper.myinterface.Callbacks;
@@ -181,50 +176,7 @@ public class GradeListFragment extends ModelListFragment<Grade>
 	public void updateAdapter()
 	{
 		mModel = GradeDAO.get(getActivity()).getAllGrades();
-		GradeAdapter gradeAdapter = new GradeAdapter(mModel);
+		GradeAdapter gradeAdapter = new GradeAdapter(mModel, getActivity());
 		setListAdapter(gradeAdapter);
-	}
-	
-	private class GradeAdapter extends ArrayAdapter<Grade> implements Filterable
-	{
-		public GradeAdapter(ArrayList<Grade> grades)
-		{
-			super(getActivity(), android.R.layout.simple_list_item_1, grades);
-		}
-		
-		@SuppressLint("InflateParams")
-		@Override 
-		public View getView(int position, View convertView, ViewGroup parent)
-		{
-			// If we weren't given a view, inflate one.
-			if (convertView == null)
-				convertView = getActivity().getLayoutInflater()
-					.inflate(R.layout.list_item_grade, null);
-			
-			// Configure the view for this grade.
-			Grade g = getItem(position);
-			
-			TextView studentFirstNameTextView = 
-					(TextView) convertView.findViewById(R.id.grade_list_item_student_firstName);
-			studentFirstNameTextView.setText(g.getStudent().getFirstName());
-			
-			TextView studentLastNameTextView = 
-					(TextView) convertView.findViewById(R.id.grade_list_item_student_lastName);
-			studentLastNameTextView.setText(g.getStudent().getLastName());
-			
-			TextView courseNameTextView = 
-					(TextView) convertView.findViewById(R.id.grade_list_item_course_name);
-			courseNameTextView.setText(g.getTest().getCourse().getName());
-			
-			TextView testNameTextView = 
-					(TextView) convertView.findViewById(R.id.grade_list_item_test_name);
-			testNameTextView.setText(g.getTest().getName());
-			
-			TextView gradeTextView = 
-					(TextView) convertView.findViewById(R.id.grade_list_item_value);
-			gradeTextView.setText(String.valueOf(g.getGradeValue()));
-			
-			return convertView;
-		}
 	}
 }

@@ -1,13 +1,11 @@
 package com.example.classhelper.fragment;
 
-import java.util.ArrayList;
-
 import com.example.classhelper.R;
+import com.example.classhelper.adapter.TestAdapter;
 import com.example.classhelper.data.TestDAO;
 import com.example.classhelper.model.Test;
 import com.example.classhelper.myinterface.Callbacks;
 
-import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.os.Build;
@@ -20,10 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
-import android.widget.ArrayAdapter;
-import android.widget.Filterable;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 
 public class TestListFragment extends ModelListFragment<Test> 
@@ -175,7 +170,7 @@ public class TestListFragment extends ModelListFragment<Test>
 	public void updateAdapter()
 	{
 		mModel = TestDAO.get(getActivity()).getAllTests();
-		TestAdapter testAdapter = new TestAdapter(mModel);
+		TestAdapter testAdapter = new TestAdapter(mModel, getActivity());
 		setListAdapter(testAdapter);
 	}
 	
@@ -183,30 +178,5 @@ public class TestListFragment extends ModelListFragment<Test>
 	protected int getActivityTitle() 
 	{
 		return R.string.test_crud;
-	}
-	
-	private class TestAdapter extends ArrayAdapter<Test> implements Filterable
-	{
-		public TestAdapter(ArrayList<Test> tests)
-		{
-			super(getActivity(), android.R.layout.simple_list_item_1, tests);
-		}
-		
-		@SuppressLint("InflateParams")
-		@Override 
-		public View getView(int position, View convertView, ViewGroup parent)
-		{
-			if (convertView == null)
-				convertView = getActivity().getLayoutInflater()
-					.inflate(R.layout.list_item_test, null);
-			
-			Test t = getItem(position);
-			
-			TextView nameTextView = 
-					(TextView) convertView.findViewById(R.id.test_list_item_name);
-			nameTextView.setText(t.getName());
-			
-			return convertView;
-		}
 	}
 }

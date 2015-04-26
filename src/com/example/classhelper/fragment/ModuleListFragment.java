@@ -1,13 +1,11 @@
 package com.example.classhelper.fragment;
 
-import java.util.ArrayList;
-
 import com.example.classhelper.R;
+import com.example.classhelper.adapter.ModuleAdapter;
 import com.example.classhelper.data.ModuleDAO;
 import com.example.classhelper.model.Module;
 import com.example.classhelper.myinterface.Callbacks;
 
-import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.os.Build;
@@ -20,10 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
-import android.widget.ArrayAdapter;
-import android.widget.Filterable;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 
 public class ModuleListFragment extends ModelListFragment<Module>
@@ -52,7 +47,7 @@ public class ModuleListFragment extends ModelListFragment<Module>
 		super.onCreate(savedInstanceState);
 		
 		mModel = ModuleDAO.get(getActivity()).getAllModules();
-		ModuleAdapter adapter = new ModuleAdapter(mModel);
+		ModuleAdapter adapter = new ModuleAdapter(mModel, getActivity());
 		setListAdapter(adapter);
 	}
 	
@@ -187,35 +182,7 @@ public class ModuleListFragment extends ModelListFragment<Module>
 	public void updateAdapter()
 	{
 		mModel = ModuleDAO.get(getActivity()).getAllModules();
-		ModuleAdapter moduleAdapter = new ModuleAdapter(mModel);
+		ModuleAdapter moduleAdapter = new ModuleAdapter(mModel, getActivity());
 		setListAdapter(moduleAdapter);
 	}
-	
-	private class ModuleAdapter extends ArrayAdapter<Module> implements Filterable
-	{
-		public ModuleAdapter(ArrayList<Module> modules)
-		{
-			super(getActivity(), android.R.layout.simple_list_item_1, modules);
-		}
-		
-		@SuppressLint("InflateParams")
-		@Override 
-		public View getView(int position, View convertView, ViewGroup parent)
-		{
-			// If we weren't given a view, inflate one.
-			if (convertView == null)
-				convertView = getActivity().getLayoutInflater()
-					.inflate(R.layout.list_item_module, null);
-			
-			// Configure the view for this crime.
-			Module m = getItem(position);
-			
-			TextView nameTextView = 
-					(TextView) convertView.findViewById(R.id.module_list_item_name);
-			nameTextView.setText(m.getName());
-			
-			return convertView;
-		}
-	}
-
 }

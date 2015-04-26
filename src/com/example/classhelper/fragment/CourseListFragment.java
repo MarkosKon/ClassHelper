@@ -1,13 +1,11 @@
 package com.example.classhelper.fragment;
 
-import java.util.ArrayList;
-
 import com.example.classhelper.R;
+import com.example.classhelper.adapter.CourseAdapter;
 import com.example.classhelper.data.CourseDAO;
 import com.example.classhelper.model.Course;
 import com.example.classhelper.myinterface.Callbacks;
 
-import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.os.Build;
@@ -20,10 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
-import android.widget.ArrayAdapter;
-import android.widget.Filterable;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 
 public class CourseListFragment extends ModelListFragment<Course> 
@@ -184,35 +179,7 @@ public class CourseListFragment extends ModelListFragment<Course>
 	public void updateAdapter()
 	{
 		mModel = CourseDAO.get(getActivity()).getAllCourses();
-		CourseAdapter courseAdapter = new CourseAdapter(mModel);
+		CourseAdapter courseAdapter = new CourseAdapter(mModel, getActivity());
 		setListAdapter(courseAdapter);
 	}
-	
-	private class CourseAdapter extends ArrayAdapter<Course> implements Filterable
-	{
-		public CourseAdapter(ArrayList<Course> courses)
-		{
-			super(getActivity(), android.R.layout.simple_list_item_1, courses);
-		}
-		
-		@SuppressLint("InflateParams")
-		@Override 
-		public View getView(int position, View convertView, ViewGroup parent)
-		{
-			// If we weren't given a view, inflate one.
-			if (convertView == null)
-				convertView = getActivity().getLayoutInflater()
-					.inflate(R.layout.list_item_course, null);
-			
-			// Configure the view for this crime.
-			Course c = getItem(position);
-			
-			TextView nameTextView = 
-					(TextView) convertView.findViewById(R.id.course_list_item_name);
-			nameTextView.setText(c.getName());
-			
-			return convertView;
-		}
-	}
-
 }
