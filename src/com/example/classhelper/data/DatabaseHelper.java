@@ -8,7 +8,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
 {
 	private static DatabaseHelper sDatabaseHelper;
 	
-	private static final String DATABASE_NAME = "ClassHelperOver9000.db";
+	private static final String DATABASE_NAME = "ClassHelperOver9001.db";
 	private static final int DATABASE_VERSION = 1;
 	
 	public static synchronized DatabaseHelper get(Context context)
@@ -45,6 +45,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
 					"_id integer primary key autoincrement," + 
 					"first_name varchar(100)," + 
 					"last_name varchar(100)," +
+					"phone_number varchar(100)," +
+					"email varchar(100)," +
 					"module_id integer references module(_id) on delete cascade on update cascade)");
 		
 		// Create the course table.

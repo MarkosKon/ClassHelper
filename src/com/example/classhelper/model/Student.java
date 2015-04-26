@@ -7,6 +7,8 @@ public class Student extends Model implements Serializable
 	private long mStudentId;
 	private String mFirstName;
 	private String mLastName;
+	private String mPhoneNumber;
+	private String mEmail;
 	private Module mModule;
 	
 	public Student()
@@ -44,6 +46,26 @@ public class Student extends Model implements Serializable
 		this.mLastName = mLastName;
 	}
 	
+	public String getPhoneNumber() 
+	{
+		return mPhoneNumber;
+	}
+
+	public void setPhoneNumber(String mPhoneNumber) 
+	{
+		this.mPhoneNumber = mPhoneNumber;
+	}
+
+	public String getEmail() 
+	{
+		return mEmail;
+	}
+
+	public void setEmail(String mEmail) 
+	{
+		this.mEmail = mEmail;
+	}
+
 	public Module getModule() 
 	{
 		return mModule;

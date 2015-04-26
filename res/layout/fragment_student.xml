@@ -1,57 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
-    
-    <TextView 
-        android:id="@+id/student_id"
+ <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/model_id_label"
-        style="?android:listSeparatorTextViewStyle"/>
-    
-    <TextView 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/student_first_name_label"
-        style="?android:listSeparatorTextViewStyle"/>
-    
-    <EditText 
-        android:id="@+id/student_first_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/student_first_name_hint"/>
-    
-    <TextView 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/student_last_name_label"
-        style="?android:listSeparatorTextViewStyle"/> <!-- p.195 for styles -->
-    
-    <EditText 
-        android:id="@+id/student_last_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/student_last_name_hint"/>
-    
-    <TextView 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/student_module_id_label"
-        style="?android:listSeparatorTextViewStyle"/>
-    
-    <Spinner 
-        android:id="@+id/student_module_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    
-    <Button 
-        android:id="@+id/student_save"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:text="@string/model_save_label"/>
-
-</LinearLayout>
+        android:layout_height="match_parent">
+        
+		<LinearLayout 
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="vertical" >
+		    
+		    <!-- Student ID -->
+		    <TextView 
+		        android:id="@+id/student_id"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:text="@string/model_id_label"
+		        style="?android:listSeparatorTextViewStyle"/>
+		    
+		    <!-- Student First Name -->
+		    
+		    <TextView 
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:text="@string/student_first_name_label"
+		        style="?android:listSeparatorTextViewStyle"/>
+		    
+		    <EditText 
+		        android:id="@+id/student_first_name"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:hint="@string/student_first_name_hint"/>
+		    
+		    <!-- Student Last Name -->
+		    
+		    <TextView 
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:text="@string/student_last_name_label"
+		        style="?android:listSeparatorTextViewStyle"/> <!-- p.195 for styles -->
+		    
+		    <EditText 
+		        android:id="@+id/student_last_name"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:hint="@string/student_last_name_hint"/>
+		    
+		    <!-- Student Phone Number -->
+		    
+		    <TextView 
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:text="@string/student_phone_number_label"
+		        style="?android:listSeparatorTextViewStyle"/>
+		    
+		    <EditText 
+		        android:id="@+id/student_phone_number"
+		        android:inputType="phone"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:hint="@string/student_phone_number_hint"/>
+		    
+		    <!-- Student Email -->
+		    
+		    <TextView 
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:text="@string/student_email_label"
+		        style="?android:listSeparatorTextViewStyle"/>
+		    
+		    <EditText 
+		        android:id="@+id/student_email"
+		        android:inputType="textEmailAddress"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:hint="@string/student_email_hint"/>
+		    
+		    <!-- Student Module -->
+		    
+		    <TextView 
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:text="@string/student_module_id_label"
+		        style="?android:listSeparatorTextViewStyle"/>
+		    
+		    <Spinner 
+		        android:id="@+id/student_module_id"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"/>
+		    
+		    <!-- Save/Create student button -->
+		    
+		    <Button 
+		        android:id="@+id/student_save"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginLeft="16dp"
+		        android:layout_marginRight="16dp"
+		        android:text="@string/model_save_label"/>
+		
+		</LinearLayout>
+</ScrollView>

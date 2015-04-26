@@ -18,6 +18,8 @@ public class StudentDAO
 	private static final String COLUMN_STUDENT_ID = "_id";
 	private static final String COLUMN_STUDENT_FIRST_NAME = "first_name";
 	private static final String COLUMN_STUDENT_LAST_NAME = "last_name";
+	private static final String COLUMN_STUDENT_PHONE_NUMBER = "phone_number";
+	private static final String COLUMN_STUDENT_EMAIL = "email";
 	private static final String COLUMN_STUDENT_MODULE_ID = "module_id";
 	
 	public static StudentDAO get(Context context)
@@ -37,6 +39,8 @@ public class StudentDAO
 		ContentValues values = new ContentValues();
 		values.put(COLUMN_STUDENT_FIRST_NAME, student.getFirstName());
 		values.put(COLUMN_STUDENT_LAST_NAME, student.getLastName());
+		values.put(COLUMN_STUDENT_PHONE_NUMBER, student.getPhoneNumber());
+		values.put(COLUMN_STUDENT_EMAIL, student.getEmail());
 		values.put(COLUMN_STUDENT_MODULE_ID, student.getModule().getId());
 		return DatabaseHelper.get(mAppContext).getWritableDatabase().insert(TABLE_STUDENT, null, values);
 	}
@@ -54,6 +58,8 @@ public class StudentDAO
 		ContentValues values = new ContentValues();
 		values.put(COLUMN_STUDENT_FIRST_NAME, student.getFirstName());
 		values.put(COLUMN_STUDENT_LAST_NAME, student.getLastName());
+		values.put(COLUMN_STUDENT_PHONE_NUMBER, student.getPhoneNumber());
+		values.put(COLUMN_STUDENT_EMAIL, student.getEmail());
 		values.put(COLUMN_STUDENT_MODULE_ID, student.getModule().getId());
 		
 		String selection = COLUMN_STUDENT_ID + " LIKE ?";
@@ -127,8 +133,10 @@ public class StudentDAO
 		student.setId(cursor.getLong(0));
 		student.setFirstName(cursor.getString(1));
 		student.setLastName(cursor.getString(2));
+		student.setPhoneNumber(cursor.getString(3));
+		student.setEmail(cursor.getString(4));
 		
-		long moduleId = cursor.getLong(3);
+		long moduleId = cursor.getLong(5);
 		Module module = ModuleDAO.get(mAppContext).getModuleById(moduleId);
 		if (module != null)
 			student.setModule(module);

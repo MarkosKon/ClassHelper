@@ -21,6 +21,10 @@
     <string name="student_first_name_hint">Enter first name</string>
     <string name="student_last_name_label">Last Name</string>
     <string name="student_last_name_hint">Enter last name</string>
+    <string name="student_phone_number_label">Phone Number</string>
+    <string name="student_phone_number_hint">Enter phone number</string>
+    <string name="student_email_label">Email</string>
+    <string name="student_email_hint">Enter email</string>
     <string name="student_module_id_label">Module</string>
     
     <string name="module_name_label">Module Name</string>

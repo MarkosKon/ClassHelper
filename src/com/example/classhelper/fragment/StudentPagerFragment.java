@@ -38,6 +38,8 @@ public class StudentPagerFragment extends Fragment
 	private TextView mIdTextView;
 	private EditText mFirstNameEditText;
 	private EditText mLastNameEditText;
+	private EditText mPhoneNumberEditText;
+	private EditText mEmailEditText;
 	private Spinner mSpinner;
 	private Button mSaveButton;
 	
@@ -120,6 +122,54 @@ public class StudentPagerFragment extends Fragment
 			public void onTextChanged(CharSequence s, int start, int before, int count) 
 			{
 				mStudent.setLastName(s.toString());
+			}
+			
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void afterTextChanged(Editable s) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		mPhoneNumberEditText = (EditText) v.findViewById(R.id.student_phone_number);
+		mPhoneNumberEditText.setText(mStudent.getPhoneNumber());
+		mPhoneNumberEditText.addTextChangedListener(new TextWatcher() {
+			
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) 
+			{
+				mStudent.setPhoneNumber(s.toString());
+			}
+			
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void afterTextChanged(Editable s) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		mEmailEditText = (EditText) v.findViewById(R.id.student_email);
+		mEmailEditText.setText(mStudent.getEmail());
+		mEmailEditText.addTextChangedListener(new TextWatcher() {
+			
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) 
+			{
+				mStudent.setEmail(s.toString());
 			}
 			
 			@Override
