@@ -55,20 +55,17 @@ public class GradeListFragment extends ModelListFragment<Grade>
 	{
 		View v = super.onCreateView(inflater, container, savedInstanceState);
 		
-		// p.349. 
-		ListView listView = (ListView)v.findViewById(android.R.id.list);
-		
 		// p.353.
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB)
 		{
 			// Use floating context menus on Froyo and Gingerbread. See method onContextItemSelected for more.
-			registerForContextMenu(listView);
+			registerForContextMenu(mListView);
 		}
 		else
 		{
 			// Use contextual action bar on Honeycomb and higher.
-			listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
-			listView.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
+			mListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+			mListView.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
 				
 				@Override
 				public boolean onPrepareActionMode(ActionMode mode, Menu menu) {

@@ -509,6 +509,7 @@ int string course_name_hint 0x7f0a0024
 int string course_name_label 0x7f0a0023
 int string create_model 0x7f0a0018
 int string delete_model 0x7f0a0019
+int string empty_list_view 0x7f0a002f
 int string grade_crud 0x7f0a0015
 int string grade_student_id_label 0x7f0a002d
 int string grade_test_id_label 0x7f0a002e

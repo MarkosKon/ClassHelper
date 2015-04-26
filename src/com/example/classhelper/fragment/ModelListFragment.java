@@ -22,6 +22,8 @@ import android.widget.ListView;
 // All models ListFragment are subclasses of this class.
 public abstract class ModelListFragment<T> extends ListFragment 
 {
+	protected ListView mListView;
+	
 	protected ArrayList<T> mModel;
 	
 	protected Callbacks<T> mCallbacks;
@@ -46,8 +48,8 @@ public abstract class ModelListFragment<T> extends ListFragment
 		View v = super.onCreateView(inflater, container, savedInstanceState);
 		
 		// If the device has hardware keyboard, the user can search the items on the list.
-		ListView listView = (ListView)v.findViewById(android.R.id.list);
-		listView.setTextFilterEnabled(true); 
+		mListView = (ListView)v.findViewById(android.R.id.list);
+		mListView.setTextFilterEnabled(true); 
 		
 		// p.325 This is to show the < actionbar item in Honeycomb +.
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
@@ -60,6 +62,14 @@ public abstract class ModelListFragment<T> extends ListFragment
 		}
 		
 		return v;
+	}
+	
+	// We override this method to show the user a message if the listview is empty.
+	@Override
+	public void onActivityCreated (Bundle savedInstanceState)
+	{
+		super.onActivityCreated(savedInstanceState);
+		setEmptyText("There are no items to display");
 	}
 	
 	@Override
