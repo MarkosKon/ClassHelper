@@ -49,6 +49,6 @@ public class Test extends Model implements Serializable
 	@Override
 	public String toString()
 	{
-		return mName;
+		return mName + " - " + mCourse.getName();
 	}
 }
