@@ -9,7 +9,6 @@ import com.example.classhelper.model.Test;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.util.Log;
 
 public class GradeDAO 
 {
@@ -112,13 +111,11 @@ public class GradeDAO
 		
 		long studentId = cursor.getLong(2);
 		Student student = StudentDAO.get(mAppContext).getStudentById(studentId);
-		Log.i("GradeDAO.cursorToGrade", "Student last name is: " + student.getLastName());
 		if (student != null)
 			grade.setStudent(student);
 		
 		long testId = cursor.getLong(3);
 		Test test = TestDAO.get(mAppContext).getTestById(testId);
-		Log.i("GradeDAO.cursorToGrade", "Test name is: " + test.getName());
 		if (test != null)
 			grade.setTest(test);
 		

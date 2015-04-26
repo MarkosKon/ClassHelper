@@ -5,6 +5,7 @@ import java.util.Collections;
 
 import com.example.classhelper.R;
 import com.example.classhelper.adapter.StudentAdapter;
+import com.example.classhelper.adapter.TestAdapter;
 import com.example.classhelper.data.StudentDAO;
 import com.example.classhelper.data.TestDAO;
 import com.example.classhelper.model.Grade;
@@ -24,7 +25,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -120,59 +120,39 @@ public class GradePagerFragment extends Fragment
 		// Setup a spinner with the available last names of the students.
 		mStudentSpinner = (Spinner) v.findViewById(R.id.grade_student_id);
 		ArrayList<Student> students = StudentDAO.get(getActivity()).getAllStudents();
-		//ArrayList<String> studentNames = new ArrayList<String>();
-		//for (Student s : students)
-		//{
-			//studentNames.add(s.getLastName());
-		//}
-		// Position first on the list grade's current student.
+		
+		// We want to position current's grade student on top of the list.
 		int i =0;
 		for (Student s : students)
 		{
 			if (mGrade.getStudent().getId() == s.getId())
-			{
 				Collections.swap(students, 0, i);
-				//students.remove(s);
-				//students.add(0, s);
-			}
 			i++;
 		}
-		//if (mGrade.getStudent().getLastName() != null)
-		//{
-			//studentNames.remove(mGrade.getStudent().getLastName());
-			//studentNames.add(0, mGrade.getStudent().getLastName());
-		//}
-		
 		StudentAdapter studentAdapter = new StudentAdapter(students, getActivity());
-		//studentAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		//ArrayAdapter<String> spinnerAdapter	= new ArrayAdapter<String>(getActivity(),
-			//	android.R.layout.simple_spinner_item, studentNames);
-		//spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		//mStudentSpinner.setAdapter(spinnerAdapter);
 		mStudentSpinner.setAdapter(studentAdapter);
 		mStudentSpinner.setOnItemSelectedListener(this);
+		
 		
 		// Setup a spinner with the available names of the tests.
 		mTestSpinner = (Spinner) v.findViewById(R.id.grade_test_id);
 		ArrayList<Test> tests = TestDAO.get(getActivity()).getAllTests();
-		ArrayList<String> testNames = new ArrayList<String>();
+		
+		// Same here but for grade's test.
+		i = 0;
 		for (Test t : tests)
 		{
-			testNames.add(t.getName());
+			if (mGrade.getTest().getId() == t.getId())
+				Collections.swap(tests, 0, i);
+			i++;
 		}
-		if (mGrade.getTest().getName() != null)
-		{
-			testNames.remove(mGrade.getTest().getName());
-			testNames.add(0, mGrade.getTest().getName());
-		}
-		
-		ArrayAdapter<String> spinnerAdapter1 = new ArrayAdapter<String>(getActivity(),
-				android.R.layout.simple_spinner_item, testNames);
-		spinnerAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		mTestSpinner.setAdapter(spinnerAdapter1);
+		TestAdapter testAdapter = new TestAdapter(tests, getActivity());
+		mTestSpinner.setAdapter(testAdapter);
 		mTestSpinner.setOnItemSelectedListener(this);
 		
+		
 		mSaveButton = (Button) v.findViewById(R.id.grade_save);
+		// The activity that hosts the fragment will decide what to do on button click.
 		mSaveButton.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -211,7 +191,7 @@ public class GradePagerFragment extends Fragment
 	}
 	
 	/**
-	 *  Spinner Listener Method. 
+	 *  Spinner Listener Methods. 
 	*/
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int position,
@@ -225,15 +205,14 @@ public class GradePagerFragment extends Fragment
 		}
 		else if (spinner.getId() == R.id.grade_test_id)
 		{
-			Test test = TestDAO.get(getActivity())
-					.getTestByName(parent.getItemAtPosition(position).toString());
+			Test test = (Test) parent.getItemAtPosition(position);
 			mGrade.setTest(test);
 		}
 	}
 
 	@Override
-	public void onNothingSelected(AdapterView<?> parent) {
-		// TODO Auto-generated method stub
+	public void onNothingSelected(AdapterView<?> parent) 
+	{
 		
 	}
 

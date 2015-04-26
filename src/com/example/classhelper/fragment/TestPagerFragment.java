@@ -1,8 +1,10 @@
 package com.example.classhelper.fragment;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import com.example.classhelper.R;
+import com.example.classhelper.adapter.CourseAdapter;
 import com.example.classhelper.data.CourseDAO;
 import com.example.classhelper.model.Course;
 import com.example.classhelper.model.Test;
@@ -20,7 +22,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -137,20 +138,15 @@ public class TestPagerFragment extends Fragment
 		
 		mSpinner = (Spinner) v.findViewById(R.id.test_course_id);
 		ArrayList<Course> courses = CourseDAO.get(getActivity()).getAllCourses();
-		ArrayList<String> courseNames = new ArrayList<String>();
+		// We want to position current test's course on top of the list.
+		int i = 0;
 		for (Course c : courses)
 		{
-			courseNames.add(c.getName());
+			if (mTest.getCourse().getId() == c.getId())
+				Collections.swap(courses, 0, i);
+			i++;
 		}
-		if (mTest.getCourse().getName() != null)
-		{
-			courseNames.remove(mTest.getCourse().getName());
-			courseNames.add(0, mTest.getCourse().getName());
-		}
-		
-		ArrayAdapter<String> spinnerAdapter	= new ArrayAdapter<String>(getActivity(),
-				android.R.layout.simple_spinner_item, courseNames);
-		spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		CourseAdapter spinnerAdapter	= new CourseAdapter(courses, getActivity());
 		mSpinner.setAdapter(spinnerAdapter);
 		mSpinner.setOnItemSelectedListener(this);
 		
@@ -192,12 +188,14 @@ public class TestPagerFragment extends Fragment
 		return fragment;
 	}
 	
+	/**
+	 *  Spinner Listener Methods. 
+	*/
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int position,
 			long id) 
 	{
-		Course course = CourseDAO.get(getActivity())
-				.getCourseByName(parent.getItemAtPosition(position).toString());
+		Course course = (Course) parent.getItemAtPosition(position);
 		mTest.setCourse(course);
 	}
 

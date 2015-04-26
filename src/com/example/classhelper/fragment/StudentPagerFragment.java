@@ -1,8 +1,10 @@
 package com.example.classhelper.fragment;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import com.example.classhelper.R;
+import com.example.classhelper.adapter.ModuleAdapter;
 import com.example.classhelper.data.ModuleDAO;
 import com.example.classhelper.model.Module;
 import com.example.classhelper.model.Student;
@@ -21,7 +23,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -137,20 +138,14 @@ public class StudentPagerFragment extends Fragment
 		
 		mSpinner = (Spinner) v.findViewById(R.id.student_module_id);
 		ArrayList<Module> modules = ModuleDAO.get(getActivity()).getAllModules();
-		ArrayList<String> moduleNames = new ArrayList<String>();
+		int i = 0;
 		for (Module m : modules)
 		{
-			moduleNames.add(m.getName());
+			if (mStudent.getModule().getId() == m.getId())
+				Collections.swap(modules, 0, i);
+			i++;
 		}
-		if (mStudent.getModule().getName() != null)
-		{
-			moduleNames.remove(mStudent.getModule().getName());
-			moduleNames.add(0, mStudent.getModule().getName());
-		}
-		
-		ArrayAdapter<String> spinnerAdapter	= new ArrayAdapter<String>(getActivity(),
-				android.R.layout.simple_spinner_item, moduleNames);
-		spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		ModuleAdapter spinnerAdapter = new ModuleAdapter(modules, getActivity());
 		mSpinner.setAdapter(spinnerAdapter);
 		mSpinner.setOnItemSelectedListener(this);
 		
@@ -201,8 +196,7 @@ public class StudentPagerFragment extends Fragment
 	public void onItemSelected(AdapterView<?> parent, View view, int position,
 			long id) 
 	{	
-		Module module = ModuleDAO.get(getActivity())
-				.getModuleByName(parent.getItemAtPosition(position).toString());
+		Module module = (Module) parent.getItemAtPosition(position);
 		mStudent.setModule(module);
 	}
 

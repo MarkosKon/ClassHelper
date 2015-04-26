@@ -1,8 +1,10 @@
 package com.example.classhelper.fragment;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import com.example.classhelper.R;
+import com.example.classhelper.adapter.ModuleAdapter;
 import com.example.classhelper.data.ModuleDAO;
 import com.example.classhelper.model.Course;
 import com.example.classhelper.model.Module;
@@ -20,7 +22,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -112,20 +113,15 @@ public class CoursePagerFragment extends Fragment
 		
 		mSpinner = (Spinner) v.findViewById(R.id.course_module_id);
 		ArrayList<Module> modules = ModuleDAO.get(getActivity()).getAllModules();
-		ArrayList<String> moduleNames = new ArrayList<String>();
+		// We want to position current course's module on top of the list.
+		int i = 0;
 		for (Module m : modules)
 		{
-			moduleNames.add(m.getName());
+			if (mCourse.getModule().getId() == m.getId())
+				Collections.swap(modules, 0, i);
+			i++;
 		}
-		if (mCourse.getModule().getName() != null)
-		{
-			moduleNames.remove(mCourse.getModule().getName());
-			moduleNames.add(0, mCourse.getModule().getName());
-		}
-		
-		ArrayAdapter<String> spinnerAdapter	= new ArrayAdapter<String>(getActivity(),
-				android.R.layout.simple_spinner_item, moduleNames);
-		spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		ModuleAdapter spinnerAdapter = new ModuleAdapter(modules, getActivity());
 		mSpinner.setAdapter(spinnerAdapter);
 		mSpinner.setOnItemSelectedListener(this);
 		
@@ -169,13 +165,14 @@ public class CoursePagerFragment extends Fragment
 	}
 	
 	
-
+	/**
+	 *  Spinner Listener Methods. 
+	*/
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int position,
 			long id) 
 	{
-		Module module = ModuleDAO.get(getActivity())
-				.getModuleByName(parent.getItemAtPosition(position).toString());
+		Module module = (Module) parent.getItemAtPosition(position);
 		mCourse.setModule(module);
 	}
 
