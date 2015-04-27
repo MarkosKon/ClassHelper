@@ -78,7 +78,9 @@ public class MainMenuFragment extends ListFragment
 			if (modules.size() == 0)
 			{
 				Toast toast = Toast
-						.makeText(getActivity(), "Create some modules first", Toast.LENGTH_SHORT);
+						.makeText(getActivity(), 
+								  getResources().getText(R.string.toast_student_crud), 
+								  Toast.LENGTH_SHORT);
 				toast.show();
 				
 			}
@@ -94,7 +96,9 @@ public class MainMenuFragment extends ListFragment
 			if (courses.size() == 0)
 			{
 				Toast toast = Toast
-						.makeText(getActivity(), "Create some courses first", Toast.LENGTH_SHORT);
+						.makeText(getActivity(), 
+								  getResources().getText(R.string.toast_test_crud), 
+								  Toast.LENGTH_SHORT);
 				toast.show();
 				
 			}
@@ -111,13 +115,17 @@ public class MainMenuFragment extends ListFragment
 			if (students.size() == 0)
 			{
 				Toast toast = Toast
-						.makeText(getActivity(), "Create some students first", Toast.LENGTH_SHORT);
+						.makeText(getActivity(), 
+								  getResources().getText(R.string.toast_grade_crud_student), 
+								  Toast.LENGTH_SHORT);
 				toast.show();
 			}
 			else if (tests.size() == 0)
 			{
 				Toast toast = Toast
-						.makeText(getActivity(), "Create some tests first", Toast.LENGTH_SHORT);
+						.makeText(getActivity(), 
+								  getResources().getText(R.string.toast_grade_crud_test), 
+								  Toast.LENGTH_SHORT);
 				toast.show();
 			}
 			else
@@ -132,7 +140,9 @@ public class MainMenuFragment extends ListFragment
 			if (modules.size() == 0)
 			{
 				Toast toast = Toast
-						.makeText(getActivity(), "Create some modules first", Toast.LENGTH_SHORT);
+						.makeText(getActivity(), 
+								  getResources().getText(R.string.toast_course_crud), 
+								  Toast.LENGTH_SHORT);
 				toast.show();
 			}
 			else

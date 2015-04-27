@@ -54,7 +54,9 @@ public class TestListActivity extends ModelListActivity
 		int testExists = TestDAO.get(getApplicationContext()).update(test);
 		if (testExists == 0)
 			TestDAO.get(getApplicationContext()).insert(test);
-		Toast toast = Toast.makeText(this, "Item saved", Toast.LENGTH_SHORT);
+		Toast toast = Toast.makeText(this, 
+									 getResources().getText(R.string.toast_item_saved), 
+									 Toast.LENGTH_SHORT);
 		toast.show();
 		
 		FragmentManager fm = getSupportFragmentManager();

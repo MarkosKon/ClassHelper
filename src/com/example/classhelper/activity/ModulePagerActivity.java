@@ -102,7 +102,9 @@ public class ModulePagerActivity extends FragmentActivity
 		int moduleExists = ModuleDAO.get(getApplicationContext()).update(module);
 		if (moduleExists == 0)
 			ModuleDAO.get(getApplicationContext()).insert(module);
-		Toast toast = Toast.makeText(this, "Item saved", Toast.LENGTH_SHORT);
+		Toast toast = Toast.makeText(this, 
+									 getResources().getText(R.string.toast_item_saved), 
+									 Toast.LENGTH_SHORT);
 		toast.show();
 	}
 

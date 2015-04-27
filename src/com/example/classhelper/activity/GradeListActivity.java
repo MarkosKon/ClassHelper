@@ -56,7 +56,9 @@ public class GradeListActivity extends ModelListActivity
 		int gradeExists = GradeDAO.get(getApplicationContext()).update(grade);
 		if (gradeExists == 0)
 			GradeDAO.get(getApplicationContext()).insert(grade);
-		Toast toast = Toast.makeText(this, "Item saved", Toast.LENGTH_SHORT);
+		Toast toast = Toast.makeText(this, 
+									 getResources().getText(R.string.toast_item_saved), 
+									 Toast.LENGTH_SHORT);
 		toast.show();
 		
 		FragmentManager fm = getSupportFragmentManager();

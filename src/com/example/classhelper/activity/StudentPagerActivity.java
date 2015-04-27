@@ -102,7 +102,9 @@ public class StudentPagerActivity extends FragmentActivity
 		int studentExists = StudentDAO.get(getApplicationContext()).update(student);
 		if (studentExists == 0)
 			StudentDAO.get(getApplicationContext()).insert(student);
-		Toast toast = Toast.makeText(this, "Item saved", Toast.LENGTH_SHORT);
+		Toast toast = Toast.makeText(this, 
+									 getResources().getText(R.string.toast_item_saved), 
+									 Toast.LENGTH_SHORT);
 		toast.show();
 	}
 }

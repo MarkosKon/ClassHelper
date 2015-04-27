@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Βοηθός Τάξης</string>
+    <string name="action_settings">Ρυθμίσεις</string>
+    
+    <string name="main_menu_title">Βασικό Μενού</string>
+    
+    <string name="student_crud">Μαθητές</string>
+    <string name="toast_student_crud">Πρέπει να δημιουργήσετε τάξεις πρώτα</string>
+    <string name="test_crud">Τεστ</string>
+    <string name="toast_test_crud">Πρέπει να δημιουργήσετε μαθήματα πρώτα</string>
+    <string name="grade_crud">Βαθμοί</string>
+    <string name="toast_grade_crud_student">Πρέπει να δημιουργήσετε μαθητές πρώτα</string>
+    <string name="toast_grade_crud_test">Πρέπει να δημιουργήσετε τεστ πρώτα</string>
+    <string name="course_crud">Μαθήματα</string>
+    <string name="toast_course_crud">Πρέπει να δημιουργήσετε τάξεις πρώτα</string>
+    <string name="module_crud">Τάξεις</string>
+    
+    <string name="create_model">Δημιουργία νέου αντικειμένου</string>
+    <string name="delete_model">Διαγραφή</string>
+    <string name="model_id_label">Κλειδί: </string>
+    <string name="model_save_label">Αποθήκευση</string>
+    
+    <string name="student_first_name_label">Όνομα</string>
+    <string name="student_first_name_hint">Εισαγωγή ονόματος</string>
+    <string name="student_last_name_label">Επώνυμο</string>
+    <string name="student_last_name_hint">Εισαγωγή επωνύμου</string>
+    <string name="student_phone_number_label">Τηλέφωνο</string>
+    <string name="student_phone_number_hint">Εισαγωγή τηλεφώνου</string>
+    <string name="student_email_label">Email</string>
+    <string name="student_email_hint">Εισαγωγή email</string>
+    <string name="student_module_id_label">Τάξη</string>
+    
+    <string name="module_name_label">Όνομα Τάξης</string>
+    <string name="module_name_hint">Εισαγωγή ονόματος τάξης</string>
+    
+    <string name="course_name_label">Όνομα μαθήματος</string>
+    <string name="course_name_hint">Εισαγωγή ονόματος μαθήματος</string>
+    <string name="course_module_id_label">Τάξη</string>
+    
+    <string name="test_name_label">Όνομα τεστ</string>
+    <string name="test_name_hint">Εισαγωγή ονόματος τεστ</string>
+    <string name="test_notes_label">Σημειώσεις</string>
+    <string name="test_notes_hint">Εισαγωγή σημειώσεων</string>
+    <string name="test_course_id_label">Μάθημα</string>
+    
+    <string name="grade_value_label">Βαθμός</string>
+    <string name="grade_value_hint">Εισαγωγή βαθμού</string>
+    <string name="grade_student_id_label">Μαθητής</string>
+    <string name="grade_test_id_label">Τεστ</string>
+    
+    <string name="toast_item_saved">Επιτυχής καταχώρηση</string>
+    
+    <string name="empty_list_view">Δεν υπάρχουν αντικείμενα για προβολή</string>
+
+</resources>
