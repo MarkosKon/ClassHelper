@@ -334,7 +334,7 @@ int drawable abc_textfield_search_activated_mtrl_alpha 0x7f020030
 int drawable abc_textfield_search_default_mtrl_alpha 0x7f020031
 int drawable abc_textfield_search_material 0x7f020032
 int drawable background_activated 0x7f020033
-int drawable book 0x7f020034
+int drawable books_icon 0x7f020034
 int drawable ic_launcher 0x7f020035
 int drawable ic_menu_cc_am 0x7f020036
 int drawable ic_menu_compose 0x7f020037
