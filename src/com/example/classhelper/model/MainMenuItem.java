@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class MainMenuItem implements Serializable 
 {
+	private static final long serialVersionUID = 696218429758515003L;
 	private String mTitle;
 	private int mImageResourceId; 
 	

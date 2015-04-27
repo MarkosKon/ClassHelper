@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class Course extends Model implements Serializable
 {
+	private static final long serialVersionUID = 4383481182099146956L;
 	private long mCourseId;
 	private String mName;
 	private Module mModule;

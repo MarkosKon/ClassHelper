@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class Test extends Model implements Serializable
 {
+	private static final long serialVersionUID = -1701590355676931376L;
 	private long mTestId;
 	private String mName;
 	private String mNotes;

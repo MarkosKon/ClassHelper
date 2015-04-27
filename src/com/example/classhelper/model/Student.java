@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class Student extends Model implements Serializable
 {
+	private static final long serialVersionUID = -8736059105844232556L;
 	private long mStudentId;
 	private String mFirstName;
 	private String mLastName;

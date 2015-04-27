@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class Grade extends Model implements Serializable
 {
+	private static final long serialVersionUID = -117498167530281420L;
 	private long mGradeId;
 	private int mGradeValue;
 	private Student mStudent;
