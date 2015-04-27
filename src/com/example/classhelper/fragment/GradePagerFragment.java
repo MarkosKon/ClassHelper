@@ -1,5 +1,7 @@
 package com.example.classhelper.fragment;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -14,8 +16,12 @@ import com.example.classhelper.model.Test;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.graphics.pdf.PdfDocument;
+import android.graphics.pdf.PdfDocument.Page;
+import android.graphics.pdf.PdfDocument.PageInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
 import android.text.Editable;
@@ -159,6 +165,8 @@ public class GradePagerFragment extends Fragment
 			public void onClick(View v) 
 			{
 				mCallbacks.onListItemUpdate(mGrade);
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
+					createPdf();
 			}
 		});
 		
@@ -188,6 +196,53 @@ public class GradePagerFragment extends Fragment
 		fragment.setArguments(args);
 		
 		return fragment;
+	}
+	
+	@TargetApi(19)
+	public void createPdf()
+	{
+		// create a new document
+		 PdfDocument document = new PdfDocument();
+
+		 // crate a page description
+		 PageInfo pageInfo = new PageInfo.Builder(500, 500, 1).create();
+
+		 // start a page
+		 Page page = document.startPage(pageInfo);
+
+		 // draw something on the page
+		 View content = getActivity().getWindow().getDecorView();
+		 content.draw(page.getCanvas());
+
+		 // finish the page
+		 document.finishPage(page);
+		 
+		 try 
+		 {
+			 File file = new File(Environment.getExternalStoragePublicDirectory(
+			            Environment.DIRECTORY_DOWNLOADS), 
+			            "yolo3000.pdf");
+			 FileOutputStream outputStream = new FileOutputStream(file);
+			 
+			 // write the document content
+			 document.writeTo(outputStream);
+		 }
+		 catch (Exception e)
+		 {
+			 e.printStackTrace();
+		 }
+
+		 // close the document
+		 document.close();
+	}
+	
+	/* Checks if external storage is available for read and write */
+	public boolean isExternalStorageWritable() 
+	{
+	    String state = Environment.getExternalStorageState();
+	    if (Environment.MEDIA_MOUNTED.equals(state)) 
+	        return true;
+	    return false;
 	}
 	
 	/**
