@@ -46,7 +46,10 @@ public class CourseListFragment extends ModelListFragment<Course>
 	{
 		super.onCreate(savedInstanceState);
 		
-		updateAdapter();
+		mModel = CourseDAO.get(getActivity()).getAllCourses();
+		
+		CourseAdapter courseAdapter = new CourseAdapter(mModel, getActivity());
+		setListAdapter(courseAdapter);
 	}
 	
 	// p.332.
@@ -100,7 +103,6 @@ public class CourseListFragment extends ModelListFragment<Course>
 							}
 							updateAdapter();
 							mode.finish();
-							adapter.notifyDataSetChanged();
 							return true;
 						default:
 							return false;
@@ -173,10 +175,13 @@ public class CourseListFragment extends ModelListFragment<Course>
 		return R.string.course_crud;
 	}
 	
+	/**
+	 * Update fragment's course list and CourseAdapter's course list.
+	 */
+	@Override
 	public void updateAdapter()
 	{
 		mModel = CourseDAO.get(getActivity()).getAllCourses();
-		CourseAdapter courseAdapter = new CourseAdapter(mModel, getActivity());
-		setListAdapter(courseAdapter);
+		((CourseAdapter) getListAdapter()).updateAdapter(mModel);
 	}
 }

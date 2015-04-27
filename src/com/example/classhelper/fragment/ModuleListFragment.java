@@ -47,6 +47,7 @@ public class ModuleListFragment extends ModelListFragment<Module>
 		super.onCreate(savedInstanceState);
 		
 		mModel = ModuleDAO.get(getActivity()).getAllModules();
+		
 		ModuleAdapter adapter = new ModuleAdapter(mModel, getActivity());
 		setListAdapter(adapter);
 	}
@@ -102,7 +103,6 @@ public class ModuleListFragment extends ModelListFragment<Module>
 							}
 							updateAdapter();
 							mode.finish();
-							adapter.notifyDataSetChanged();
 							return true;
 						default:
 							return false;
@@ -176,10 +176,13 @@ public class ModuleListFragment extends ModelListFragment<Module>
 		return R.string.module_crud;
 	}
 	
+	/**
+	 * Update fragment's module list and ModuleAdapter's module list.
+	 */
+	@Override
 	public void updateAdapter()
 	{
 		mModel = ModuleDAO.get(getActivity()).getAllModules();
-		ModuleAdapter moduleAdapter = new ModuleAdapter(mModel, getActivity());
-		setListAdapter(moduleAdapter);
+		((ModuleAdapter) getListAdapter()).updateAdapter(mModel);
 	}
 }

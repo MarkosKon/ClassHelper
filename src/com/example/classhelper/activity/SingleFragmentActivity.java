@@ -12,8 +12,9 @@ public abstract class SingleFragmentActivity extends FragmentActivity
 {
 	protected abstract Fragment createFragment();
 	
-	// p.438. Subclasses will now choose to override this method for a 
-	// different layout.
+	/** 
+	 * Subclasses will now choose to override this method for a different layout.  
+	 */
 	protected int getLayoutResId() 
 	{
 		return R.layout.activity_fragment;

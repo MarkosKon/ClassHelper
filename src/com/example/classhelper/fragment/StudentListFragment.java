@@ -46,7 +46,10 @@ public class StudentListFragment extends ModelListFragment<Student>
 	{
 		super.onCreate(savedInstanceState);
 		
-		updateAdapter();
+		mModel = StudentDAO.get(getActivity()).getAllStudents();
+		
+		StudentAdapter studentAdapter = new StudentAdapter(mModel, getActivity());
+		setListAdapter(studentAdapter);
 	}
 	
 	// p.332.
@@ -100,7 +103,6 @@ public class StudentListFragment extends ModelListFragment<Student>
 							}
 							updateAdapter();
 							mode.finish();
-							adapter.notifyDataSetChanged();
 							return true;
 						default:
 							return false;
@@ -118,7 +120,9 @@ public class StudentListFragment extends ModelListFragment<Student>
 		return v;
 	}
 	
-	// p.227. The commented out stuff, the new at p.445.
+	/**
+	 * The activity that hosts the fragment responds to the selection.
+	 */
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id)
 	{
@@ -133,6 +137,9 @@ public class StudentListFragment extends ModelListFragment<Student>
 		updateAdapter();
 	}
 	
+	/**
+	 * The activity that hosts the fragment responds to the options menu selection.
+	 */
 	@TargetApi(11)
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
@@ -149,7 +156,10 @@ public class StudentListFragment extends ModelListFragment<Student>
 		}
 	}
 	
-	// p.351. In this method we handle the context menu for android versions lesser that Honeycomb.
+	/**
+	 *  In this method we handle the floating context menu for android versions 
+	 *  less than Honeycomb.
+	 */
 	@Override
 	public boolean onContextItemSelected(MenuItem item)
 	{
@@ -174,15 +184,12 @@ public class StudentListFragment extends ModelListFragment<Student>
 	}
 	
 	/**
-	 * More like a create a new adapter and less update (notifyDataSetChanged method). This is
-	 * because when we create or edit a model from PagerFragment
-	 * we do not know what happened to the database. It is not elegant
-	 * but i can't think of something better.
+	 * Update fragment's student list and StudentAdapter's student list.
 	 */
+	@Override
 	public void updateAdapter()
 	{
 		mModel = StudentDAO.get(getActivity()).getAllStudents();
-		StudentAdapter studentAdapter = new StudentAdapter(mModel, getActivity());
-		setListAdapter(studentAdapter);
+		((StudentAdapter) getListAdapter()).updateAdapter(mModel);
 	}
 }

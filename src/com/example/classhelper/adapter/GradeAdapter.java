@@ -16,11 +16,13 @@ import com.example.classhelper.model.Grade;
 public class GradeAdapter extends ArrayAdapter<Grade> implements Filterable
 {
 	private Activity mAppContext;
+	private ArrayList<Grade> mGrades;
 	
 	public GradeAdapter(ArrayList<Grade> grades, Activity activity)
 	{
 		super(activity, android.R.layout.simple_list_item_1, grades);
 		mAppContext = activity;
+		mGrades = grades;
 	}
 	
 	@SuppressLint("InflateParams")
@@ -56,5 +58,12 @@ public class GradeAdapter extends ArrayAdapter<Grade> implements Filterable
 		gradeTextView.setText(String.valueOf(g.getGradeValue()));
 		
 		return convertView;
+	}
+	
+	public void updateAdapter(ArrayList<Grade> grades)
+	{
+		mGrades.clear();
+		mGrades.addAll(grades);
+		this.notifyDataSetChanged();
 	}
 }

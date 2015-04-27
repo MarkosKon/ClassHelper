@@ -16,11 +16,13 @@ import com.example.classhelper.model.Test;
 public class TestAdapter extends ArrayAdapter<Test> implements Filterable
 {
 	private Activity mAppContext;
+	private ArrayList<Test> mTests;
 	
 	public TestAdapter(ArrayList<Test> tests, Activity activity)
 	{
 		super(activity, android.R.layout.simple_list_item_1, tests);
 		mAppContext = activity;
+		mTests = tests;
 	}
 	
 	@SuppressLint("InflateParams")
@@ -38,5 +40,12 @@ public class TestAdapter extends ArrayAdapter<Test> implements Filterable
 		nameTextView.setText(t.getName());
 		
 		return convertView;
+	}
+	
+	public void updateAdapter(ArrayList<Test> tests)
+	{
+		mTests.clear();
+		mTests.addAll(tests);
+		this.notifyDataSetChanged();
 	}
 }

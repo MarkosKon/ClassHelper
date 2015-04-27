@@ -19,7 +19,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-// All models ListFragment are subclasses of this class.
+/**
+ * The ListFragment of all models are subclasses of ModelListFragment.
+ * The class contains as much code as possible to avoid duplication.
+ */ 
 public abstract class ModelListFragment<T> extends ListFragment 
 {
 	protected ListView mListView;
@@ -40,7 +43,9 @@ public abstract class ModelListFragment<T> extends ListFragment
 		setRetainInstance(true);
 	}
 	
-	// p.325.
+	/** 
+	 * Return a simple list view.
+	 */
 	@TargetApi (11)
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -51,10 +56,10 @@ public abstract class ModelListFragment<T> extends ListFragment
 		mListView = (ListView)v.findViewById(android.R.id.list);
 		mListView.setTextFilterEnabled(true); 
 		
-		// p.325 This is to show the < actionbar item in Honeycomb +.
+		// Show the symbol < (navigate to parent activity) in Actionbar
+		// if the system version is Honeycomb or more.
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
 		{
-			// p.327. the if on the statement inside the if.
 			if (NavUtils.getParentActivityName(getActivity()) != null)
 			{
 				getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);	
@@ -64,7 +69,9 @@ public abstract class ModelListFragment<T> extends ListFragment
 		return v;
 	}
 	
-	// We override this method to show the user a message if the listview is empty.
+	/**
+	 *  We override this method to show the user a message when the ListView is empty.
+	 */
 	@Override
 	public void onActivityCreated (Bundle savedInstanceState)
 	{
@@ -72,6 +79,10 @@ public abstract class ModelListFragment<T> extends ListFragment
 		setEmptyText(getResources().getString(R.string.empty_list_view));
 	}
 	
+	/**
+	 * This method sets the options menu. Pre-Honeycomb and
+	 * Honeycomb +
+	 */
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
 	{
@@ -79,7 +90,9 @@ public abstract class ModelListFragment<T> extends ListFragment
 		inflater.inflate(R.menu.fragment_model_list, menu);
 	}
 	
-	// We use this method to respond to the < actionbar item in Honeycomb+.
+	/**
+	 *  Respond to the < actionbar item in Honeycomb+.
+	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
@@ -94,13 +107,23 @@ public abstract class ModelListFragment<T> extends ListFragment
 		}
 	}
 	
-	// p.348.
+	/**
+	 * This method sets a contextual action bar (Honeycomb+) 
+	 * and a floating context menu (less than Honeycomb)
+	 */
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
 	{
 		getActivity().getMenuInflater().inflate(R.menu.model_list_item_context, menu);
 	}
 	
-	// Subclasses override this method to change title.
+	/**
+	 *  Subclasses override this method to change the title.
+	 */
 	protected abstract int getActivityTitle();
+	
+	/**
+	 * Subclasses override this method to update their corresponding adapter.
+	 */
+	protected abstract void updateAdapter();
 }

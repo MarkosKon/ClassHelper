@@ -46,7 +46,10 @@ public class TestListFragment extends ModelListFragment<Test>
 	{
 		super.onCreate(savedInstanceState);
 		
-		updateAdapter();
+		mModel = TestDAO.get(getActivity()).getAllTests();
+		
+		TestAdapter testAdapter = new TestAdapter(mModel, getActivity());
+		setListAdapter(testAdapter);
 	}
 	
 	@TargetApi (11)
@@ -99,7 +102,6 @@ public class TestListFragment extends ModelListFragment<Test>
 							}
 							updateAdapter();
 							mode.finish();
-							adapter.notifyDataSetChanged();
 							return true;
 						default:
 							return false;
@@ -164,16 +166,19 @@ public class TestListFragment extends ModelListFragment<Test>
 		return super.onContextItemSelected(item);
 	}
 	
-	public void updateAdapter()
-	{
-		mModel = TestDAO.get(getActivity()).getAllTests();
-		TestAdapter testAdapter = new TestAdapter(mModel, getActivity());
-		setListAdapter(testAdapter);
-	}
-	
 	@Override
 	protected int getActivityTitle() 
 	{
 		return R.string.test_crud;
+	}
+	
+	/**
+	 * Update fragment's test list and TestAdapter's test list.
+	 */
+	@Override
+	public void updateAdapter()
+	{
+		mModel = TestDAO.get(getActivity()).getAllTests();
+		((TestAdapter) getListAdapter()).updateAdapter(mModel);
 	}
 }

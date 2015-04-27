@@ -36,7 +36,7 @@ public class StudentPagerActivity extends FragmentActivity
 		Student student = (Student) getIntent().getSerializableExtra(StudentPagerFragment.EXTRA_STUDENT);
 		mStudents = StudentDAO.get(this).getAllStudents();
 		
-		// Awkward check if we are editing student details or creating a new one.
+		// Awkward check to see if we are editing student details or creating a new one.
 		boolean studentAlreadyExists = false;
 		for(Student s : mStudents)
 		{
@@ -64,25 +64,25 @@ public class StudentPagerActivity extends FragmentActivity
 			}
 		});
 		
-		mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-			
+		mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() 
+		{
 			@Override
-			public void onPageSelected(int pos) {
+			public void onPageSelected(int pos) 
+			{
 				Student s = (Student) mStudents.get(pos);
 				if (s.getLastName() != null)
 					setTitle(s.getLastName());
+			}
+			
+			@Override
+			public void onPageScrolled(int arg0, float arg1, int arg2) 
+			{
 				
 			}
 			
 			@Override
-			public void onPageScrolled(int arg0, float arg1, int arg2) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void onPageScrollStateChanged(int arg0) {
-				// TODO Auto-generated method stub
+			public void onPageScrollStateChanged(int arg0) 
+			{
 				
 			}
 		});
@@ -97,6 +97,10 @@ public class StudentPagerActivity extends FragmentActivity
 		}
 	}
 	
+	/**
+	 * This method responds to StudentPagerFragment's save details button when
+	 * the application runs on a phone.
+	 */
 	public void onListItemUpdate(Student student)
 	{
 		int studentExists = StudentDAO.get(getApplicationContext()).update(student);

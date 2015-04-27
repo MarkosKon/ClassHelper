@@ -46,7 +46,10 @@ public class GradeListFragment extends ModelListFragment<Grade>
 	{
 		super.onCreate(savedInstanceState);
 		
-		updateAdapter();
+		mModel = GradeDAO.get(getActivity()).getAllGrades();
+		
+		GradeAdapter gradeAdapter = new GradeAdapter(mModel, getActivity());
+		setListAdapter(gradeAdapter);
 	}
 	
 	@TargetApi (11)
@@ -99,7 +102,6 @@ public class GradeListFragment extends ModelListFragment<Grade>
 							}
 							updateAdapter();
 							mode.finish();
-							adapter.notifyDataSetChanged();
 							return true;
 						default:
 							return false;
@@ -170,10 +172,13 @@ public class GradeListFragment extends ModelListFragment<Grade>
 		return R.string.grade_crud;
 	}
 	
+	/**
+	 * Update fragment's grade list and GradeAdapter's grade list.
+	 */
+	@Override
 	public void updateAdapter()
 	{
 		mModel = GradeDAO.get(getActivity()).getAllGrades();
-		GradeAdapter gradeAdapter = new GradeAdapter(mModel, getActivity());
-		setListAdapter(gradeAdapter);
+		((GradeAdapter) getListAdapter()).updateAdapter(mModel);
 	}
 }

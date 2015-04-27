@@ -16,11 +16,13 @@ import com.example.classhelper.model.Course;
 public class CourseAdapter extends ArrayAdapter<Course> implements Filterable
 {
 	private Activity mAppContext;
+	private ArrayList<Course> mCourses;
 	
 	public CourseAdapter(ArrayList<Course> courses, Activity activity)
 	{
 		super(activity, android.R.layout.simple_list_item_1, courses);
 		mAppContext = activity;
+		mCourses = courses;
 	}
 	
 	@SuppressLint("InflateParams")
@@ -40,5 +42,12 @@ public class CourseAdapter extends ArrayAdapter<Course> implements Filterable
 		nameTextView.setText(c.getName());
 		
 		return convertView;
+	}
+	
+	public void updateAdapter(ArrayList<Course> courses)
+	{
+		mCourses.clear();
+		mCourses.addAll(courses);
+		this.notifyDataSetChanged();
 	}
 }

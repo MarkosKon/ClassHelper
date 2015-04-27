@@ -16,11 +16,13 @@ import com.example.classhelper.model.Student;
 public class StudentAdapter extends ArrayAdapter<Student> implements Filterable
 {
 	private Activity mAppContext;
+	private ArrayList<Student> mStudents;
 	
 	public StudentAdapter(ArrayList<Student> students, Activity activity)
 	{
 		super(activity, android.R.layout.simple_list_item_1, students);
 		mAppContext = activity;
+		mStudents = students;
 	}
 	
 	@SuppressLint("InflateParams")
@@ -44,5 +46,12 @@ public class StudentAdapter extends ArrayAdapter<Student> implements Filterable
 		lastNameTextView.setText(s.getLastName());
 		
 		return convertView;
+	}
+	
+	public void updateAdapter(ArrayList<Student> students)
+	{
+		mStudents.clear();
+		mStudents.addAll(students);
+		this.notifyDataSetChanged();
 	}
 }
