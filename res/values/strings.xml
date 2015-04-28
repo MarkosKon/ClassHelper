@@ -19,6 +19,7 @@
     
     <string name="create_model">Create new item</string>
     <string name="delete_model">Delete</string>
+    <string name="send_email">Send Email</string>
     <string name="model_id_label">ID: </string>
     <string name="model_save_label">Save item</string>
     
@@ -53,5 +54,12 @@
     <string name="toast_item_saved">Item Saved</string>
     
     <string name="empty_list_view">There are no items to display</string>
+    
+    <string name="email_subject_label">Email Subject</string>
+    <string name="email_subject_hint">Enter Email Subject</string>
+    <string name="email_body_label">Email Body</string>
+    <string name="email_body_hint">Enter Email Content</string>
+    <string name="email_recipient_list_label">Recipient List</string>
+    <string name="email_send_label">Send Email</string>
 
 </resources>

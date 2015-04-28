@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+	<!-- Email Subject -->
+	
+	<TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/email_subject_label"
+        style="?android:listSeparatorTextViewStyle"/>
+	
+	<EditText 
+        android:id="@+id/email_subject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:lines="1"
+        android:hint="@string/email_subject_hint"/>
+	
+	<!-- Email Body -->
+	
+	<TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/email_body_label"
+        style="?android:listSeparatorTextViewStyle"/>
+	
+	<EditText 
+        android:id="@+id/email_body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:lines="4"
+        android:hint="@string/email_body_hint"/>
+	
+	<!-- Recipient List -->
+	
+	<TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/email_recipient_list_label"
+        style="?android:listSeparatorTextViewStyle"/>
+	
+	<TextView 
+	    android:id="@+id/email_recipient_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="?android:listSeparatorTextViewStyle"/>
+	
+	<!-- Send Button -->
+	
+	<Button 
+        android:id="@+id/email_send"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:text="@string/email_send_label"/>
+	
+	
+</LinearLayout>

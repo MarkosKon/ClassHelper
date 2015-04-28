@@ -79,7 +79,6 @@ public class StudentDAO
 				null, // having
 				"1"); // limit 1 row
 		if (cursor != null && cursor.moveToFirst())
-			// cursor.moveToFirst();
 			student = cursorToStudent(cursor);
 		
 		return student;
@@ -102,6 +101,30 @@ public class StudentDAO
 		return student;
 	}
 	
+	public ArrayList<Student> getStudentsByModule(long moduleId)
+	{
+		ArrayList<Student> students = new ArrayList<Student>();
+		Cursor cursor = DatabaseHelper.get(mAppContext).getReadableDatabase().query(TABLE_STUDENT, 
+				null, // all columns.
+				COLUMN_STUDENT_MODULE_ID + " = ?", // look for module id
+				new String[]{String.valueOf(moduleId)}, // with this value
+				null, // group by
+				null, // order by
+				null, // having
+				null); // limit 1 row
+		if (cursor != null && cursor.moveToFirst())
+		{
+			while(!cursor.isAfterLast())
+			{
+				Student student = cursorToStudent(cursor);
+				students.add(student);
+				cursor.moveToNext();
+			}
+			cursor.close();
+		}
+		return students;
+	}
+	
 	public ArrayList<Student> getAllStudents()
 	{
 		ArrayList<Student> students = new ArrayList<Student>();
@@ -114,7 +137,6 @@ public class StudentDAO
 				COLUMN_STUDENT_LAST_NAME + " asc");
 		if (cursor != null && cursor.moveToFirst())
 		{
-			// cursor.moveToFirst();
 			while(!cursor.isAfterLast())
 			{
 				Student student = cursorToStudent(cursor);

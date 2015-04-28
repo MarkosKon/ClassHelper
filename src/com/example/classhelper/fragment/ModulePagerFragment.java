@@ -1,10 +1,16 @@
 package com.example.classhelper.fragment;
 
+import java.util.ArrayList;
+
 import com.example.classhelper.R;
+import com.example.classhelper.activity.EmailActivity;
+import com.example.classhelper.data.StudentDAO;
 import com.example.classhelper.model.Module;
+import com.example.classhelper.model.Student;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,6 +18,8 @@ import android.support.v4.app.NavUtils;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -112,6 +120,17 @@ public class ModulePagerFragment extends Fragment
 		return v;
 	}
 	
+	/**
+	 * This method sets the options menu. Pre-Honeycomb and
+	 * Honeycomb +
+	 */
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
+	{
+		super.onCreateOptionsMenu(menu, inflater);
+		inflater.inflate(R.menu.fragment_model_pager, menu);
+	}
+	
 	// p.326.
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
@@ -121,6 +140,21 @@ public class ModulePagerFragment extends Fragment
 			case android.R.id.home:
 				if (NavUtils.getParentActivityName(getActivity()) != null)
 					NavUtils.navigateUpFromSameTask(getActivity());
+				return true;
+			case R.id.menu_item_send_email:
+				Intent i = new Intent(getActivity(), EmailActivity.class);
+				ArrayList<Student> students = new ArrayList<Student>();
+				students = StudentDAO.get(getActivity())
+						.getStudentsByModule(mModule.getId());
+				ArrayList<String> emails = new ArrayList<String>();
+				for (Student s : students)
+				{
+					emails.add(s.getEmail());
+				}
+				String[] recipientList = new String[emails.size()];
+				recipientList = emails.toArray(recipientList);
+				i.putExtra(EmailFragment.EXTRA_RECIPIENT_LIST, recipientList);
+				startActivity(i);
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);

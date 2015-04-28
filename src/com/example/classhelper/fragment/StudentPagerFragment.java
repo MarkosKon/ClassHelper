@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import com.example.classhelper.R;
+import com.example.classhelper.activity.EmailActivity;
 import com.example.classhelper.adapter.ModuleAdapter;
 import com.example.classhelper.data.ModuleDAO;
 import com.example.classhelper.model.Module;
@@ -11,6 +12,7 @@ import com.example.classhelper.model.Student;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,6 +20,8 @@ import android.support.v4.app.NavUtils;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +36,7 @@ public class StudentPagerFragment extends Fragment
 	implements OnItemSelectedListener
 {
 	public static final String TAG = "StudentPagerFragment";
-	public static final String EXTRA_STUDENT = "com.example.criminalintent.student";
+	public static final String EXTRA_STUDENT = "com.example.classhelper.model.student";
 	private Student mStudent; 
 	
 	private TextView mIdTextView;
@@ -68,8 +72,12 @@ public class StudentPagerFragment extends Fragment
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		
 		mStudent = (Student) getArguments().getSerializable(EXTRA_STUDENT);
+		
 		setHasOptionsMenu(true);
+		
+		setRetainInstance(true);
 	}
 	
 	@TargetApi(11)
@@ -212,6 +220,17 @@ public class StudentPagerFragment extends Fragment
 		return v;
 	}
 	
+	/**
+	 * This method sets the options menu. Pre-Honeycomb and
+	 * Honeycomb +
+	 */
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
+	{
+		super.onCreateOptionsMenu(menu, inflater);
+		inflater.inflate(R.menu.fragment_model_pager, menu);
+	}
+	
 	// p.326.
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
@@ -221,6 +240,12 @@ public class StudentPagerFragment extends Fragment
 			case android.R.id.home:
 				if (NavUtils.getParentActivityName(getActivity()) != null)
 					NavUtils.navigateUpFromSameTask(getActivity());
+				return true;
+			case R.id.menu_item_send_email:
+				Intent i = new Intent(getActivity(), EmailActivity.class);
+				String[] recipientList = new String[]{mStudent.getEmail()};
+				i.putExtra(EmailFragment.EXTRA_RECIPIENT_LIST, recipientList);
+				startActivity(i);
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);

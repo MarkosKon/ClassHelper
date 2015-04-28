@@ -19,6 +19,7 @@
     
     <string name="create_model">Δημιουργία νέου αντικειμένου</string>
     <string name="delete_model">Διαγραφή</string>
+    <string name="send_email">Αποστολή email</string>
     <string name="model_id_label">Κλειδί: </string>
     <string name="model_save_label">Αποθήκευση</string>
     
@@ -53,5 +54,12 @@
     <string name="toast_item_saved">Επιτυχής καταχώρηση</string>
     
     <string name="empty_list_view">Δεν υπάρχουν αντικείμενα για προβολή</string>
+    
+    <string name="email_subject_label">Θέμα</string>
+    <string name="email_subject_hint">Εισαγωγή θέματος</string>
+    <string name="email_body_label">Περιεχόμενο</string>
+    <string name="email_body_hint">Εισαγηγή περιεχομένου</string>
+    <string name="email_recipient_list_label">Παραλήπτες</string>
+    <string name="email_send_label">Αποστολή email</string>
 
 </resources>

@@ -129,6 +129,11 @@
                 android:value="com.example.classhelper.activity.GradeListActivity"/>
         </activity>
         
+        <activity 
+            android:name="com.example.classhelper.activity.EmailActivity"
+            android:label="@string/app_name">
+        </activity>
+        
     </application>
 
 </manifest>
