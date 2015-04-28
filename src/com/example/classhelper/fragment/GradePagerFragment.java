@@ -165,8 +165,6 @@ public class GradePagerFragment extends Fragment
 			public void onClick(View v) 
 			{
 				mCallbacks.onListItemUpdate(mGrade);
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
-					createPdf();
 			}
 		});
 		

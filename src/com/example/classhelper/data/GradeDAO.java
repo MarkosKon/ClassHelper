@@ -79,6 +79,54 @@ public class GradeDAO
 		return grade;
 	}
 	
+	public ArrayList<Grade> getGradesByTest(Test test)
+	{
+		ArrayList<Grade> grades = new ArrayList<Grade>();
+		Cursor cursor = DatabaseHelper.get(mAppContext).getReadableDatabase().query(TABLE_GRADE, 
+				null, // all columns.
+				COLUMN_GRADE_TEST_ID + " = ?", // look for module id
+				new String[]{String.valueOf(test.getId())}, // with this value
+				null, // group by
+				null, // having
+				COLUMN_GRADE_VALUE, // order by
+				null); // limit 1 row
+		if (cursor != null && cursor.moveToFirst())
+		{
+			while(!cursor.isAfterLast())
+			{
+				Grade grade = cursorToGrade(cursor);
+				grades.add(grade);
+				cursor.moveToNext();
+			}
+			cursor.close();
+		}
+		return grades;
+	}
+	
+	public ArrayList<Grade> getGradesByStudent(Student student)
+	{
+		ArrayList<Grade> grades = new ArrayList<Grade>();
+		Cursor cursor = DatabaseHelper.get(mAppContext).getReadableDatabase().query(TABLE_GRADE, 
+				null, // all columns.
+				COLUMN_GRADE_STUDENT_ID + " = ?", // look for module id
+				new String[]{String.valueOf(student.getId())}, // with this value
+				null, // group by
+				null, // having
+				COLUMN_GRADE_VALUE, // order by
+				null); // limit 1 row
+		if (cursor != null && cursor.moveToFirst())
+		{
+			while(!cursor.isAfterLast())
+			{
+				Grade grade = cursorToGrade(cursor);
+				grades.add(grade);
+				cursor.moveToNext();
+			}
+			cursor.close();
+		}
+		return grades;
+	}
+	
 	public ArrayList<Grade> getAllGrades()
 	{
 		ArrayList<Grade> grades = new ArrayList<Grade>();
