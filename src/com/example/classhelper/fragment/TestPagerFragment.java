@@ -1,11 +1,13 @@
 package com.example.classhelper.fragment;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
 import com.example.classhelper.R;
 import com.example.classhelper.adapter.CourseAdapter;
 import com.example.classhelper.data.CourseDAO;
+import com.example.classhelper.data.PDFHelper;
 import com.example.classhelper.model.Course;
 import com.example.classhelper.model.Test;
 
@@ -18,6 +20,8 @@ import android.support.v4.app.NavUtils;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -163,6 +167,17 @@ public class TestPagerFragment extends Fragment
 		return v;
 	}
 	
+	/**
+	 * This method sets the options menu. Pre-Honeycomb and
+	 * Honeycomb +
+	 */
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
+	{
+		super.onCreateOptionsMenu(menu, inflater);
+		inflater.inflate(R.menu.fragment_report, menu);
+	}
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
@@ -171,6 +186,17 @@ public class TestPagerFragment extends Fragment
 			case android.R.id.home:
 				if (NavUtils.getParentActivityName(getActivity()) != null)
 					NavUtils.navigateUpFromSameTask(getActivity());
+				return true;
+			case R.id.menu_item_create_report:
+				PDFHelper pdfHelper = new PDFHelper(mTest, getActivity());
+			try 
+			{
+				pdfHelper.createTestReport();
+			} 
+			catch (IOException e) 
+			{
+				e.printStackTrace();
+			}
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);

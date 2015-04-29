@@ -2,6 +2,7 @@ package com.example.classhelper.data;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import android.content.Context;
@@ -13,31 +14,24 @@ import com.example.classhelper.model.Student;
 import com.example.classhelper.model.Test;
 import com.itextpdf.text.Anchor;
 import com.itextpdf.text.BadElementException;
-import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chapter;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
-import com.itextpdf.text.List;
-import com.itextpdf.text.ListItem;
+import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Section;
+import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 public class PDFHelper 
 {
-	private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
-		      Font.BOLD);
-   private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12,
-      Font.NORMAL, BaseColor.RED);
-   private static Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 16,
-      Font.BOLD);
-   private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,
-      Font.BOLD);
+	public static final String TAG = "PDFHelper";
+	private static BaseFont mFont ;
    
    private Context mAppContext;
    private String mFileName;
@@ -49,7 +43,22 @@ public class PDFHelper
 	   mModel = student;
 	   mAppContext = context;
 	   mFileName = student.toString() + " - Grades.pdf";
-	   mDocument = new Document();
+	   try
+	   {
+		   mDocument = new Document();
+		   File file = new File(Environment.getExternalStoragePublicDirectory(
+		            Environment.DIRECTORY_DOWNLOADS), 
+		            mFileName);
+		   FileOutputStream outputStream = new FileOutputStream(file);
+		   PdfWriter.getInstance(mDocument, outputStream);
+		   addMetaData();
+		   //addStudentContent(mDocument);
+		   mDocument.close();
+	   }
+	   catch (Exception e)
+	   {
+		   e.printStackTrace();
+	   }
    }
    
    public PDFHelper(Test test, Context context)
@@ -60,14 +69,22 @@ public class PDFHelper
 			       " - " + 
 			       test.toString() + 
 			       "- Grades.pdf";
+   }
+   
+   public void createTestReport() throws IOException
+   {
 	   try
 	   {
+		   mFont = BaseFont.createFont("/assets/fonts/arial.ttf", 
+				   	  "Cp1253", 
+					  BaseFont.EMBEDDED);
 		   mDocument = new Document();
 		   File file = new File(Environment.getExternalStoragePublicDirectory(
 		            Environment.DIRECTORY_DOWNLOADS), 
 		            mFileName);
 		   FileOutputStream outputStream = new FileOutputStream(file);
 		   PdfWriter.getInstance(mDocument, outputStream);
+		   mDocument.open();
 		   addMetaData();
 		   addTestContent(mDocument);
 		   mDocument.close();
@@ -77,7 +94,6 @@ public class PDFHelper
 		   e.printStackTrace();
 	   }
    }
-   
    /**
     * This method adds meta-data to the PDF document which can be
     * viewed under File -> Properties. 
@@ -94,27 +110,21 @@ public class PDFHelper
    private void addTestContent(Document document) 
 		   throws DocumentException, BadElementException 
    {
-	   Anchor anchor = new Anchor("First Chapter", catFont);
+	   Anchor anchor = new Anchor("First Chapter");
 	   anchor.setName("First Chapter");
 		
 	   // Second parameter is the number of the chapter
 	   Chapter catPart = new Chapter(new Paragraph(anchor), 1);
 		
-	   Paragraph subPara = new Paragraph("Subcategory 1", subFont);
+	   Paragraph subPara = new Paragraph("Subcategory 1", new Font(mFont, 16));
 	   Section subCatPart = catPart.addSection(subPara);
-	   subCatPart.add(new Paragraph("Hello"));
+	   subCatPart.add(new Paragraph("\u039d\u03cd\u03c6\u03b5\u03c2", new Font(mFont, 16)));
 		
-	   subPara = new Paragraph("Subcategory 2", subFont);
+	   subPara = new Paragraph("Subcategory 2", new Font(mFont, 16));
 	   subCatPart = catPart.addSection(subPara);
 	   subCatPart.add(new Paragraph("Paragraph 1"));
 	   subCatPart.add(new Paragraph("Paragraph 2"));
 	   subCatPart.add(new Paragraph("Paragraph 3"));
-		
-	   // add a list
-	   createList(subCatPart);
-	   Paragraph paragraph = new Paragraph();
-	   addEmptyLine(paragraph, 5);
-	   subCatPart.add(paragraph);
 		
 	   // add a table
 	   ArrayList<Grade> grades = GradeDAO.get(mAppContext)
@@ -132,7 +142,8 @@ public class PDFHelper
 	   
 	   for (Grade g : grades)
 	   {
-		   table.addCell(g.getStudent().toString());
+		   table.addCell(new PdfPCell(new Phrase(g.getStudent().toString(),
+				   								 new Font(mFont, 12))));
 		   table.addCell(String.valueOf(g.getGradeValue()));
 	   }
 	   subCatPart.add(table);
@@ -141,32 +152,17 @@ public class PDFHelper
 	   document.add(catPart);
 		
 	   // Next section
-	   anchor = new Anchor("Second Chapter", catFont);
+	   anchor = new Anchor("Second Chapter");
 	   anchor.setName("Second Chapter");
 		
 	   // Second parameter is the number of the chapter
 	   catPart = new Chapter(new Paragraph(anchor), 1);
 		
-	   subPara = new Paragraph("Subcategory", subFont);
+	   subPara = new Paragraph("Subcategory", new Font(mFont, 16));
 	   subCatPart = catPart.addSection(subPara);
 	   subCatPart.add(new Paragraph("This is a very important message"));
 		
 	   // now add all this to the document
 	   document.add(catPart);
-   }
-   
-   private void createList(Section subCatPart) 
-   {
-	    List list = new List(true, false, 10);
-	    list.add(new ListItem("First point"));
-	    list.add(new ListItem("Second point"));
-	    list.add(new ListItem("Third point"));
-	    subCatPart.add(list);
-   }
-   
-   private void addEmptyLine(Paragraph paragraph, int number) 
-   {
-	   for (int i = 0; i < number; i++) 
-		   paragraph.add(new Paragraph(" "));
    }
 }

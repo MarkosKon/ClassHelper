@@ -128,7 +128,7 @@ public class ModulePagerFragment extends Fragment
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
 	{
 		super.onCreateOptionsMenu(menu, inflater);
-		inflater.inflate(R.menu.fragment_model_pager, menu);
+		inflater.inflate(R.menu.fragment_email, menu);
 	}
 	
 	// p.326.

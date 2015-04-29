@@ -88,7 +88,7 @@ public class GradeDAO
 				new String[]{String.valueOf(test.getId())}, // with this value
 				null, // group by
 				null, // having
-				COLUMN_GRADE_VALUE, // order by
+				COLUMN_GRADE_VALUE + " desc", // order by
 				null); // limit 1 row
 		if (cursor != null && cursor.moveToFirst())
 		{

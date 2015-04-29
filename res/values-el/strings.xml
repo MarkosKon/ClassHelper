@@ -20,6 +20,7 @@
     <string name="create_model">Δημιουργία νέου αντικειμένου</string>
     <string name="delete_model">Διαγραφή</string>
     <string name="send_email">Αποστολή email</string>
+    <string name="create_report">Δημιουργία PDF</string>
     <string name="model_id_label">Κλειδί: </string>
     <string name="model_save_label">Αποθήκευση</string>
     

@@ -7,6 +7,7 @@ import com.example.classhelper.R;
 import com.example.classhelper.activity.EmailActivity;
 import com.example.classhelper.adapter.ModuleAdapter;
 import com.example.classhelper.data.ModuleDAO;
+import com.example.classhelper.data.PDFHelper;
 import com.example.classhelper.model.Module;
 import com.example.classhelper.model.Student;
 
@@ -228,7 +229,8 @@ public class StudentPagerFragment extends Fragment
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
 	{
 		super.onCreateOptionsMenu(menu, inflater);
-		inflater.inflate(R.menu.fragment_model_pager, menu);
+		inflater.inflate(R.menu.fragment_email, menu);
+		inflater.inflate(R.menu.fragment_report, menu);
 	}
 	
 	// p.326.
@@ -246,6 +248,9 @@ public class StudentPagerFragment extends Fragment
 				String[] recipientList = new String[]{mStudent.getEmail()};
 				i.putExtra(EmailFragment.EXTRA_RECIPIENT_LIST, recipientList);
 				startActivity(i);
+				return true;
+			case R.id.menu_item_create_report:
+				PDFHelper pdfHelper = new PDFHelper(mStudent, getActivity());
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);

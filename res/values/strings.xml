@@ -20,6 +20,7 @@
     <string name="create_model">Create new item</string>
     <string name="delete_model">Delete</string>
     <string name="send_email">Send Email</string>
+    <string name="create_report">Create PDF report</string>
     <string name="model_id_label">ID: </string>
     <string name="model_save_label">Save item</string>
     
