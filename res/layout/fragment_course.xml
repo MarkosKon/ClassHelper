@@ -10,16 +10,14 @@
         android:id="@+id/course_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/model_id_label"
-        style="?android:listSeparatorTextViewStyle"/>
+        android:text="@string/model_id_label"/>
     
     <!-- Course Name -->
     
     <TextView 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/course_name_label"
-        style="?android:listSeparatorTextViewStyle"/>
+        android:text="@string/course_name_label"/>
     
     <EditText 
         android:id="@+id/course_name"
@@ -32,8 +30,7 @@
     <TextView 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/course_module_id_label"
-        style="?android:listSeparatorTextViewStyle"/>
+        android:text="@string/course_module_id_label"/>
     
     <Spinner 
         android:id="@+id/course_module_id"

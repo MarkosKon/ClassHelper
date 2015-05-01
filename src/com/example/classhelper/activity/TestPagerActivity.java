@@ -9,13 +9,13 @@ import com.example.classhelper.model.Test;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-public class TestPagerActivity extends FragmentActivity
+public class TestPagerActivity extends AppCompatActivity
 	implements TestPagerFragment.Callbacks
 {
 	public static final String TAG = "TestPagerActivity";

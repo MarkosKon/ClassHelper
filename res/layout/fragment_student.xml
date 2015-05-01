@@ -13,16 +13,14 @@
 		        android:id="@+id/student_id"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
-		        android:text="@string/model_id_label"
-		        style="?android:listSeparatorTextViewStyle"/>
+		        android:text="@string/model_id_label"/>
 		    
 		    <!-- Student First Name -->
 		    
 		    <TextView 
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
-		        android:text="@string/student_first_name_label"
-		        style="?android:listSeparatorTextViewStyle"/>
+		        android:text="@string/student_first_name_label"/>
 		    
 		    <EditText 
 		        android:id="@+id/student_first_name"
@@ -35,8 +33,7 @@
 		    <TextView 
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
-		        android:text="@string/student_last_name_label"
-		        style="?android:listSeparatorTextViewStyle"/> <!-- p.195 for styles -->
+		        android:text="@string/student_last_name_label"/> 
 		    
 		    <EditText 
 		        android:id="@+id/student_last_name"
@@ -49,8 +46,7 @@
 		    <TextView 
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
-		        android:text="@string/student_phone_number_label"
-		        style="?android:listSeparatorTextViewStyle"/>
+		        android:text="@string/student_phone_number_label"/>
 		    
 		    <EditText 
 		        android:id="@+id/student_phone_number"
@@ -64,8 +60,7 @@
 		    <TextView 
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
-		        android:text="@string/student_email_label"
-		        style="?android:listSeparatorTextViewStyle"/>
+		        android:text="@string/student_email_label"/>
 		    
 		    <EditText 
 		        android:id="@+id/student_email"
@@ -79,8 +74,7 @@
 		    <TextView 
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
-		        android:text="@string/student_module_id_label"
-		        style="?android:listSeparatorTextViewStyle"/>
+		        android:text="@string/student_module_id_label"/>
 		    
 		    <Spinner 
 		        android:id="@+id/student_module_id"

@@ -10,16 +10,14 @@
         android:id="@+id/module_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/model_id_label"
-        style="?android:listSeparatorTextViewStyle"/>
+        android:text="@string/model_id_label"/>
     
     <!-- Module Name -->
     
     <TextView 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/module_name_label"
-        style="?android:listSeparatorTextViewStyle"/>
+        android:text="@string/module_name_label"/>
     
     <EditText 
         android:id="@+id/module_name"

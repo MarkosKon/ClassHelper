@@ -10,6 +10,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.NavUtils;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -58,13 +60,14 @@ public abstract class ModelListFragment<T> extends ListFragment
 		
 		// Show the symbol < (navigate to parent activity) in Actionbar
 		// if the system version is Honeycomb or more.
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-		{
-			if (NavUtils.getParentActivityName(getActivity()) != null)
-			{
-				getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);	
-			}
-		}
+		//if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+		//{
+			//if (NavUtils.getParentActivityName(getActivity()) != null)
+			//{
+				((AppCompatActivity)getActivity())
+					.getSupportActionBar().setDisplayHomeAsUpEnabled(true);	
+			//}
+		//}
 		
 		return v;
 	}
@@ -88,6 +91,8 @@ public abstract class ModelListFragment<T> extends ListFragment
 	{
 		super.onCreateOptionsMenu(menu, inflater);
 		inflater.inflate(R.menu.fragment_model_list, menu);
+		MenuItem item = menu.findItem(R.id.menu_item_new_model);
+		MenuItemCompat.setShowAsAction(item, MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
 	}
 	
 	/**

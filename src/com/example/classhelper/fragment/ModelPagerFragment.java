@@ -1,6 +1,6 @@
 package com.example.classhelper.fragment;
 /** 
- * Aborted because each concrete "ModelPagerFragment" was to specific for the superclass to exist.
+ * Aborted because each concrete "ModelPagerFragment" was too specific for the superclass to exist.
 */
 
 //package com.example.classhelper;
