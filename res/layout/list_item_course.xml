@@ -6,12 +6,20 @@
 	
 	<TextView 
 	    android:id="@+id/course_list_item_name"
-	    android:layout_width="match_parent"
+	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:paddingLeft="4dp"
 	    android:paddingRight="4dp"
 	    android:paddingTop="15dp"
 	    android:paddingBottom="15dp"
+	    android:layout_alignParentLeft="true"
 	    android:text="Course Name"/>
+    
+    <ImageView 
+        android:id="@+id/course_list_item_imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_menu_edit"
+	    android:layout_alignParentRight="true"/>
 	
 </RelativeLayout>

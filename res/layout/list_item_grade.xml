@@ -2,48 +2,57 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="4dp"
-    android:paddingRight="4dp"
     android:background="@drawable/background_activated" >
 	
 	<TextView 
 	    android:id="@+id/grade_list_item_student_firstName"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
+    	android:paddingLeft="4dp"
+    	android:paddingRight="4dp"
 	    android:text="First Name"/>
 	
 	<TextView 
 	    android:id="@+id/grade_list_item_student_lastName"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:layout_below="@id/grade_list_item_student_firstName"
-	    android:paddingTop="4dp"
+    	android:paddingLeft="4dp"
+    	android:paddingRight="4dp"
+	    android:layout_toRightOf="@id/grade_list_item_student_firstName"
 	    android:text="Last Name"/>
 	
 	<TextView 
 	    android:id="@+id/grade_list_item_course_name"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:layout_below="@id/grade_list_item_course_name"
-	    android:layout_toRightOf="@id/grade_list_item_student_firstName"
-	    android:paddingLeft="40dp"
+	    android:layout_below="@id/grade_list_item_student_firstName"
+    	android:paddingLeft="4dp"
+    	android:paddingRight="4dp"
 	    android:text="Course Name"/>
 	
 	<TextView 
 	    android:id="@+id/grade_list_item_test_name"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:layout_below="@id/grade_list_item_course_name"
-	    android:layout_toRightOf="@id/grade_list_item_student_lastName"
-	    android:paddingTop="4dp"
-	    android:paddingLeft="40dp"
+	    android:layout_below="@id/grade_list_item_student_lastName"
+	    android:layout_toRightOf="@id/grade_list_item_course_name"
+	    android:paddingRight="4dp"
+	    android:paddingLeft="4dp"
 	    android:text="Test Name"/>
 	
 	<TextView 
 	    android:id="@+id/grade_list_item_value"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:layout_alignParentRight="true"
+	    android:layout_below="@id/grade_list_item_student_lastName"
+	    android:layout_toLeftOf="@+id/grade_list_item_imageView"
 	    android:text="Grade Value"/>
+	
+	<ImageView 
+        android:id="@+id/grade_list_item_imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_menu_edit"
+	    android:layout_alignParentRight="true"/>
 	
 </RelativeLayout>

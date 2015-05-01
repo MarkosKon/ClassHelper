@@ -39,11 +39,11 @@ public class MainMenuFragment extends ListFragment
 	{
 		super.onCreate(savedInstanceState);
 
-		mMenuItems.add(new MainMenuItem(getResources().getString(R.string.module_crud), android.R.drawable.ic_menu_agenda));
-		mMenuItems.add(new MainMenuItem(getResources().getString(R.string.course_crud), android.R.drawable.ic_menu_agenda));
+		mMenuItems.add(new MainMenuItem(getResources().getString(R.string.module_crud), R.drawable.ic_menu_agenda));
+		mMenuItems.add(new MainMenuItem(getResources().getString(R.string.course_crud), R.drawable.ic_menu_agenda));
 		mMenuItems.add(new MainMenuItem(getResources().getString(R.string.student_crud), R.drawable.ic_menu_cc_am));
 		mMenuItems.add(new MainMenuItem(getResources().getString(R.string.test_crud), R.drawable.ic_menu_compose));
-		mMenuItems.add(new MainMenuItem(getResources().getString(R.string.grade_crud), android.R.drawable.ic_menu_edit));
+		mMenuItems.add(new MainMenuItem(getResources().getString(R.string.grade_crud), R.drawable.ic_menu_edit));
 		
 		setHasOptionsMenu(true);
 		getActivity().setTitle(R.string.main_menu_title);

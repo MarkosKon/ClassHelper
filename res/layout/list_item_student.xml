@@ -3,23 +3,34 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/background_activated" >
-	
+    
 	<TextView 
 	    android:id="@+id/student_list_item_firstName"
-	    android:layout_width="match_parent"
+	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
 	    android:paddingLeft="4dp"
 	    android:paddingRight="4dp"
+	    android:paddingTop="20dp"
+	    android:paddingBottom="20dp"
 	    android:text="First Name"/>
 	
 	<TextView 
 	    android:id="@+id/student_list_item_lastName"
-	    android:layout_width="match_parent"
+	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:layout_below="@id/student_list_item_firstName"
+	    android:layout_toRightOf="@id/student_list_item_firstName"
 	    android:paddingLeft="4dp"
 	    android:paddingRight="4dp"
-	    android:paddingTop="4dp"
+	    android:paddingTop="20dp"
+	    android:paddingBottom="20dp"
 	    android:text="Last Name"/>
+	
+	<ImageView 
+        android:id="@+id/student_list_item_imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_menu_edit"
+	    android:layout_alignParentRight="true"/>
 	
 </RelativeLayout>

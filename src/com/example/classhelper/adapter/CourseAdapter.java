@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.classhelper.R;
@@ -34,7 +35,7 @@ public class CourseAdapter extends ArrayAdapter<Course> implements Filterable
 			convertView = mAppContext.getLayoutInflater()
 				.inflate(R.layout.list_item_course, null);
 		
-		// Configure the view for this crime.
+		// Configure the view for this course.
 		Course c = getItem(position);
 		
 		TextView nameTextView = 
