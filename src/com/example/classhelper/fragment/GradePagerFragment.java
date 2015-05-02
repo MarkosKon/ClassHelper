@@ -24,6 +24,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -91,7 +92,8 @@ public class GradePagerFragment extends Fragment
 			// p.327. the if on the statement inside the if.
 			if (NavUtils.getParentActivityName(getActivity()) != null)
 			{
-				getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);	
+				((AppCompatActivity)getActivity()).
+					getSupportActionBar().setDisplayHomeAsUpEnabled(true);	
 			}
 		}
 		

@@ -1,4 +1,4 @@
-package com.example.classhelper.fragment;
+package com.example.classhelper.notused;
 /** 
  * Aborted because each concrete "ModelPagerFragment" was too specific for the superclass to exist.
 */

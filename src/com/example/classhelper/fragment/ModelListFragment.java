@@ -6,11 +6,9 @@ import com.example.classhelper.R;
 import com.example.classhelper.myinterface.Callbacks;
 
 import android.annotation.TargetApi;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.NavUtils;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -56,18 +54,11 @@ public abstract class ModelListFragment<T> extends ListFragment
 		
 		// If the device has hardware keyboard, the user can search the items on the list.
 		mListView = (ListView)v.findViewById(android.R.id.list);
-		mListView.setTextFilterEnabled(true); 
+		mListView.setTextFilterEnabled(true);
 		
-		// Show the symbol < (navigate to parent activity) in Actionbar
-		// if the system version is Honeycomb or more.
-		//if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-		//{
-			//if (NavUtils.getParentActivityName(getActivity()) != null)
-			//{
-				((AppCompatActivity)getActivity())
-					.getSupportActionBar().setDisplayHomeAsUpEnabled(true);	
-			//}
-		//}
+		// Show the symbol < (navigate to parent activity) in Actionbar.
+		((AppCompatActivity)getActivity())
+			.getSupportActionBar().setDisplayHomeAsUpEnabled(true);	
 		
 		return v;
 	}
@@ -91,12 +82,10 @@ public abstract class ModelListFragment<T> extends ListFragment
 	{
 		super.onCreateOptionsMenu(menu, inflater);
 		inflater.inflate(R.menu.fragment_model_list, menu);
-		MenuItem item = menu.findItem(R.id.menu_item_new_model);
-		MenuItemCompat.setShowAsAction(item, MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
 	}
 	
 	/**
-	 *  Respond to the < actionbar item in Honeycomb+.
+	 *  Respond to the < ActionBar item in Honeycomb+.
 	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
@@ -119,6 +108,7 @@ public abstract class ModelListFragment<T> extends ListFragment
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
 	{
+		super.onCreateContextMenu(menu, v, menuInfo);
 		getActivity().getMenuInflater().inflate(R.menu.model_list_item_context, menu);
 	}
 	

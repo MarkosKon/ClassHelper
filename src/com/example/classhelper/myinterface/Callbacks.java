@@ -1,11 +1,10 @@
 package com.example.classhelper.myinterface;
 
 /**
- * Required interface for hosting activities. p.443.
+ * ModelList activities implement this interface to respond to 
+ * a selection of a list item from the fragment they are hosting.
  */
-
 public interface Callbacks<T> 
 {
 	void onListItemSelected(T item);
-	// TODO onListItemUpdate(T item); It is for when returning from ModelPagerFragment.
 }

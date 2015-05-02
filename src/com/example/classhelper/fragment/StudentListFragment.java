@@ -102,7 +102,7 @@ public class StudentListFragment extends ModelListFragment<Student>
 									StudentDAO.get(getActivity()).delete(adapter.getItem(i));
 							}
 							updateAdapter();
-							mode.finish();
+							mode.finish(); // Action picked, so close the CAB
 							return true;
 						default:
 							return false;
@@ -121,7 +121,8 @@ public class StudentListFragment extends ModelListFragment<Student>
 	}
 	
 	/**
-	 * The activity that hosts the fragment responds to the selection.
+	 * The activity that hosts the fragment responds to the selection of
+	 * a list item.
 	 */
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id)

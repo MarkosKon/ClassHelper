@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- For contexual action bar(Honeycomb+) and context menu (less than Honeycomb)-->
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:compat="http://schemas.android.com/apk/res-auto" >
     <item android:id="@+id/menu_item_delete_model"
 		android:icon="@android:drawable/ic_menu_delete"
 		android:title="@string/delete_model" />

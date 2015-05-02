@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -78,7 +79,8 @@ public class ModulePagerFragment extends Fragment
 			// p.327. the if on the statement inside the if.
 			if (NavUtils.getParentActivityName(getActivity()) != null)
 			{
-				getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);	
+				((AppCompatActivity)getActivity()).
+					getSupportActionBar().setDisplayHomeAsUpEnabled(true);	
 			}
 		}
 		
@@ -130,8 +132,6 @@ public class ModulePagerFragment extends Fragment
 	{
 		super.onCreateOptionsMenu(menu, inflater);
 		inflater.inflate(R.menu.fragment_email, menu);
-		MenuItem emailItem = menu.findItem(R.id.menu_item_send_email);
-		MenuItemCompat.setShowAsAction(emailItem, MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
 	}
 	
 	// p.326.
