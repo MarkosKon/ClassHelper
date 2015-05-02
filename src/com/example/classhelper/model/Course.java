@@ -41,6 +41,6 @@ public class Course extends Model implements Serializable
 	@Override
 	public String toString()
 	{
-		return mName;
+		return mName + " - " + mModule.getName();
 	}
 }

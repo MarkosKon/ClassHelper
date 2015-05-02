@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filterable;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.classhelper.R;
@@ -41,6 +40,10 @@ public class CourseAdapter extends ArrayAdapter<Course> implements Filterable
 		TextView nameTextView = 
 				(TextView) convertView.findViewById(R.id.course_list_item_name);
 		nameTextView.setText(c.getName());
+		
+		TextView moduleNameTextView = 
+				(TextView) convertView.findViewById(R.id.course_list_item_module_name);
+		moduleNameTextView.setText(c.getModule().getName());
 		
 		return convertView;
 	}

@@ -104,7 +104,7 @@ public class TestDAO
 				null, 
 				null, 
 				null, 
-				COLUMN_TEST_NAME + " asc");
+				COLUMN_TEST_COURSE_ID + " asc, " + COLUMN_TEST_NAME + " asc");
 		if (cursor != null)
 		{
 			cursor.moveToFirst();

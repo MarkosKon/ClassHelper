@@ -12,7 +12,9 @@
 	    android:paddingRight="4dp"
 	    android:paddingTop="20dp"
 	    android:paddingBottom="20dp"
-	    android:text="Name"/>
+	    android:text="Name"
+	    android:textStyle="bold"
+	    android:textSize="16sp"/>
 	
 	<ImageView 
         android:id="@+id/module_list_item_imageView"

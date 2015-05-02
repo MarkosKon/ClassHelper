@@ -43,11 +43,15 @@ public class TestPagerActivity extends AppCompatActivity
 			if (t.getId() == test.getId())
 			{
 				testAlreadyExists = true;
+				setTitle(t.getName());
 				break;
 			}
 		}
 		if (!testAlreadyExists)
+		{
 			mTests.add(test);
+			setTitle(getResources().getString(R.string.create_model));
+		}
 		
 		FragmentManager fm = getSupportFragmentManager();
 		mViewPager.setAdapter(new FragmentStatePagerAdapter(fm) {

@@ -42,11 +42,15 @@ public class ModulePagerActivity extends AppCompatActivity
 			if (m.getId() == module.getId())
 			{
 				moduleAlreadyExists = true;
+				setTitle(m.getName());
 				break;
 			}
 		}
 		if (!moduleAlreadyExists)
+		{
 			mModules.add(module);
+			setTitle(getResources().getString(R.string.create_model));
+		}
 				
 		FragmentManager fm = getSupportFragmentManager();
 		mViewPager.setAdapter(new FragmentStatePagerAdapter(fm) {

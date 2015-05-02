@@ -6,13 +6,22 @@
 	
 	<TextView 
 	    android:id="@+id/test_list_item_name"
-	    android:layout_width="match_parent"
+	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:paddingLeft="4dp"
 	    android:paddingRight="4dp"
-	    android:paddingTop="15dp"
-	    android:paddingBottom="15dp"
-	    android:text="Test Name"/>
+	    android:text="Test Name"
+	    android:textStyle="bold"
+	    android:textSize="16sp"/>
+	
+	<TextView 
+	    android:id="@+id/test_list_item_course_name"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@id/test_list_item_name"
+	    android:paddingLeft="4dp"
+	    android:paddingRight="4dp"
+	    android:text="Course Name"/>
 	
 	<ImageView 
         android:id="@+id/test_list_item_imageView"

@@ -41,11 +41,15 @@ public class CoursePagerActivity extends AppCompatActivity
 			if (c.getId() == course.getId())
 			{
 				courseAlreadyExists = true;
+				setTitle(c.getName());
 				break;
 			}
 		}
 		if (!courseAlreadyExists)
+		{
 			mCourses.add(course);
+			setTitle(getResources().getString(R.string.create_model));
+		}
 		
 		FragmentManager fm = getSupportFragmentManager();
 		mViewPager.setAdapter(new FragmentStatePagerAdapter(fm) {

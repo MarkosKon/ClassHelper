@@ -39,6 +39,10 @@ public class TestAdapter extends ArrayAdapter<Test> implements Filterable
 				(TextView) convertView.findViewById(R.id.test_list_item_name);
 		nameTextView.setText(t.getName());
 		
+		TextView courseNameTextView = 
+				(TextView) convertView.findViewById(R.id.test_list_item_course_name);
+		courseNameTextView.setText(t.getCourse().getName());
+		
 		return convertView;
 	}
 	

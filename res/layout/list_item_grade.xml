@@ -34,8 +34,7 @@
 	    android:id="@+id/grade_list_item_test_name"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:layout_below="@id/grade_list_item_student_lastName"
-	    android:layout_toRightOf="@id/grade_list_item_course_name"
+	    android:layout_below="@id/grade_list_item_course_name"
 	    android:paddingRight="4dp"
 	    android:paddingLeft="4dp"
 	    android:text="Test Name"/>
@@ -44,14 +43,18 @@
 	    android:id="@+id/grade_list_item_value"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:layout_below="@id/grade_list_item_student_lastName"
 	    android:layout_toLeftOf="@+id/grade_list_item_imageView"
-	    android:text="Grade Value"/>
+	    android:paddingTop="15dp"
+	    android:paddingBottom="15dp"
+	    android:text="Grade Value"
+	    android:textStyle="bold"/>
 	
 	<ImageView 
         android:id="@+id/grade_list_item_imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+	    android:paddingRight="4dp"
+	    android:paddingLeft="4dp"
         android:src="@drawable/ic_menu_edit"
 	    android:layout_alignParentRight="true"/>
 	

@@ -101,7 +101,7 @@ public class CourseDAO
 				null, 
 				null, 
 				null, 
-				COLUMN_COURSE_NAME + " asc");
+				COLUMN_COURSE_MODULE_ID + " asc, " + COLUMN_COURSE_NAME + " asc");
 		if (cursor != null && cursor.moveToFirst())
 		{
 			while(!cursor.isAfterLast())

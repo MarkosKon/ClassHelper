@@ -43,11 +43,15 @@ public class StudentPagerActivity extends AppCompatActivity
 			if (s.getId() == student.getId())
 			{
 				studentAlreadyExists = true;
+				setTitle(s.toString());
 				break;
 			}
 		}
 		if (!studentAlreadyExists)
+		{
 			mStudents.add(student);
+			setTitle(getResources().getString(R.string.create_model));
+		}
 		
 		FragmentManager fm = getSupportFragmentManager();
 		mViewPager.setAdapter(new FragmentStatePagerAdapter(fm) {

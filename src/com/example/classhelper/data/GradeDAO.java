@@ -136,7 +136,7 @@ public class GradeDAO
 				null, 
 				null, 
 				null, 
-				COLUMN_GRADE_VALUE + " asc");
+				COLUMN_GRADE_STUDENT_ID + " asc, " + COLUMN_GRADE_VALUE + " desc");
 		if (cursor != null && cursor.moveToFirst())
 		{
 			while(!cursor.isAfterLast())

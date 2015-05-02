@@ -47,7 +47,10 @@ public class GradePagerActivity extends AppCompatActivity
 			}
 		}
 		if (!gradeAlreadyExists)
+		{
 			mGrades.add(grade);
+			setTitle(getResources().getString(R.string.create_model));
+		}
 		
 		FragmentManager fm = getSupportFragmentManager();
 		mViewPager.setAdapter(new FragmentStatePagerAdapter(fm) {
@@ -69,7 +72,6 @@ public class GradePagerActivity extends AppCompatActivity
 			@Override
 			public void onPageSelected(int pos) 
 			{
-				setTitle("Edit Grade");
 				
 			}
 			
