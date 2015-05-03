@@ -14,6 +14,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * The purpose of this class is to create an implicit intent
+ * to send an email message.
+ */
 public class EmailFragment extends Fragment
 {
 	public static final String TAG = "EmailFragment";

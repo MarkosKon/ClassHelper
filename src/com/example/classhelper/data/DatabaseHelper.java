@@ -8,7 +8,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
 {
 	private static DatabaseHelper sDatabaseHelper;
 	
-	private static final String DATABASE_NAME = "ClassHelperOver9001.db";
+	private static final String DATABASE_NAME = "ClassHelperOver9001.db"; // sorry for the database name :)
 	private static final int DATABASE_VERSION = 1;
 	
 	public static synchronized DatabaseHelper get(Context context)
@@ -73,7 +73,6 @@ public class DatabaseHelper extends SQLiteOpenHelper
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) 
 	{
-		// TODO Auto-generated method stub
-
+		
 	}
 }

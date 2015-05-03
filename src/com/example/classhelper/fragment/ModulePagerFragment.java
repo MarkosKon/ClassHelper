@@ -15,7 +15,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -29,9 +28,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+/**
+ * The purpose of this class is to provide create, read and update
+ * functionality for the modules.
+ */
 public class ModulePagerFragment extends Fragment 
 {
-	public static final String EXTRA_MODULE = "com.example.criminalintent.module";
+	public static final String EXTRA_MODULE = "com.example.classhelper.model.Module";
 	private Module mModule;
 	
 	private TextView mIdTextView;
@@ -73,10 +76,8 @@ public class ModulePagerFragment extends Fragment
 	{
 		View v = inflater.inflate(R.layout.fragment_module, parent, false);
 		
-		// p.325.
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
 		{
-			// p.327. the if on the statement inside the if.
 			if (NavUtils.getParentActivityName(getActivity()) != null)
 			{
 				((AppCompatActivity)getActivity()).
@@ -123,10 +124,6 @@ public class ModulePagerFragment extends Fragment
 		return v;
 	}
 	
-	/**
-	 * This method sets the options menu. Pre-Honeycomb and
-	 * Honeycomb +
-	 */
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
 	{
@@ -134,7 +131,6 @@ public class ModulePagerFragment extends Fragment
 		inflater.inflate(R.menu.fragment_email, menu);
 	}
 	
-	// p.326.
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
@@ -164,6 +160,10 @@ public class ModulePagerFragment extends Fragment
 		}
 	}
 	
+	/**
+	 *  This is a convention where we want to attach arguments to
+	 *  the fragment after is created but before is added to an activity.
+	 */
 	public static ModulePagerFragment newInstance(Module module)
 	{
 		Bundle args = new Bundle();

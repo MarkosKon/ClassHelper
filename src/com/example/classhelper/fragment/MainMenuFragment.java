@@ -28,6 +28,9 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
+/**
+ * A fragment created by MainMenuActivity.
+ */
 public class MainMenuFragment extends ListFragment 
 {
 	public static final String TAG = "MainMenuFragment";
@@ -39,13 +42,17 @@ public class MainMenuFragment extends ListFragment
 	{
 		super.onCreate(savedInstanceState);
 
-		mMenuItems.add(new MainMenuItem(getResources().getString(R.string.module_crud), R.drawable.ic_menu_agenda));
-		mMenuItems.add(new MainMenuItem(getResources().getString(R.string.course_crud), R.drawable.ic_menu_agenda));
-		mMenuItems.add(new MainMenuItem(getResources().getString(R.string.student_crud), R.drawable.ic_menu_cc_am));
-		mMenuItems.add(new MainMenuItem(getResources().getString(R.string.test_crud), R.drawable.ic_menu_compose));
-		mMenuItems.add(new MainMenuItem(getResources().getString(R.string.grade_crud), R.drawable.ic_menu_edit));
+		mMenuItems.add(new MainMenuItem(getResources().getString(R.string.module_crud), 
+										R.drawable.ic_menu_agenda));
+		mMenuItems.add(new MainMenuItem(getResources().getString(R.string.course_crud), 
+										R.drawable.ic_menu_agenda));
+		mMenuItems.add(new MainMenuItem(getResources().getString(R.string.student_crud), 
+										R.drawable.ic_menu_cc_am));
+		mMenuItems.add(new MainMenuItem(getResources().getString(R.string.test_crud), 
+										R.drawable.ic_menu_compose));
+		mMenuItems.add(new MainMenuItem(getResources().getString(R.string.grade_crud), 
+										R.drawable.ic_menu_edit));
 		
-		setHasOptionsMenu(true);
 		getActivity().setTitle(R.string.main_menu_title);
 		
 

@@ -13,16 +13,29 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.widget.Toast;
 
+/**
+ * This activity inherits from ModelListActivity and SingleFragmentActivity.
+ * Its purpose is to create a CourseListFragment (and a CoursePagerFragment
+ * for tablets) and respond to events.
+ */
 public class CourseListActivity extends ModelListActivity 
 	implements Callbacks<Course>, CoursePagerFragment.Callbacks 
 {
-
+	public static final String TAG = "CourseListActivity";
+	
 	@Override
 	protected Fragment createFragment() 
 	{
 		return new CourseListFragment();
 	}
-
+	
+	/**
+	 * This method responds to the selection of a list item from CourseListFragment.
+	 * If the application runs on a phone (detailFragmentContainer does not exist) starts
+	 * a CoursePagerActivity and puts the current activity on the background. If the 
+	 * application runs on a tablet, fills the detailFragmentContainer with a 
+	 * CoursePagerFragment.
+	 */
 	@Override
 	public void onListItemSelected(Course course) 
 	{
@@ -49,7 +62,11 @@ public class CourseListActivity extends ModelListActivity
 			ft.commit();
 		}
 	}
-
+	
+	/**
+	 * This method responds to CoursePagerFragment's save details button when
+	 * the application runs on a tablet.
+	 */
 	@Override
 	public void onListItemUpdate(Course course) 
 	{

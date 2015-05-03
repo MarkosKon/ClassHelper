@@ -29,11 +29,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
 
+/**
+ * The purpose of this class is to provide create, read and update
+ * functionality for the courses.
+ */
 public class CoursePagerFragment extends Fragment
 	implements OnItemSelectedListener
 {
 	public static final String TAG = "CoursePagerFragment";
-	public static final String EXTRA_COURSE = "com.example.criminalintent.course";
+	public static final String EXTRA_COURSE = "com.example.classhelper.model.Course";
 	private Course mCourse;
 	
 	private TextView mIdTextView;
@@ -76,10 +80,8 @@ public class CoursePagerFragment extends Fragment
 	{
 		View v = inflater.inflate(R.layout.fragment_course, parent, false);
 		
-		// p.325.
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
 		{
-			// p.327. the if on the statement inside the if.
 			if (NavUtils.getParentActivityName(getActivity()) != null)
 			{
 				((AppCompatActivity)getActivity()).
@@ -140,7 +142,6 @@ public class CoursePagerFragment extends Fragment
 		return v;
 	}
 	
-	// p.326.
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
@@ -155,6 +156,10 @@ public class CoursePagerFragment extends Fragment
 		}
 	}
 	
+	/**
+	 *  This is a convention where we want to attach arguments to
+	 *  the fragment after is created but before is added to an activity.
+	 */
 	public static CoursePagerFragment newInstance(Course course)
 	{
 		Bundle args = new Bundle();

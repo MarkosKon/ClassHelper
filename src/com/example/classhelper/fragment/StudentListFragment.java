@@ -21,6 +21,10 @@ import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 
+/**
+ * The purpose of this class is to present to the user the available 
+ * students and delete them.
+ */
 public class StudentListFragment extends ModelListFragment<Student> 
 {
 	public static final String TAG = "StudentListFragment";
@@ -52,14 +56,12 @@ public class StudentListFragment extends ModelListFragment<Student>
 		setListAdapter(studentAdapter);
 	}
 	
-	// p.332.
 	@TargetApi (11)
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		View v = super.onCreateView(inflater, container, savedInstanceState);
 		
-		// p.353.
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB)
 		{
 			// Use floating context menus on Froyo and Gingerbread. See method onContextItemSelected for more.

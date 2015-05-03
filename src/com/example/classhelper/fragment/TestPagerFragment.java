@@ -33,11 +33,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
 
+/**
+ * The purpose of this class is to provide create, read and update
+ * functionality for the tests.
+ */
 public class TestPagerFragment extends Fragment
 	implements OnItemSelectedListener
 {
 	public static final String TAG = "TestPagerFragment";
-	public static final String EXTRA_TEST = "com.example.criminalintent.test";
+	public static final String EXTRA_TEST = "com.example.classhelper.model.Test";
 	private Test mTest;
 	
 	private TextView mIdTextView;
@@ -81,10 +85,8 @@ public class TestPagerFragment extends Fragment
 	{
 		View v = inflater.inflate(R.layout.fragment_test, parent, false);
 		
-		// p.325.
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
 		{
-			// p.327. the if on the statement inside the if.
 			if (NavUtils.getParentActivityName(getActivity()) != null)
 			{
 				((AppCompatActivity)getActivity()).
@@ -169,10 +171,6 @@ public class TestPagerFragment extends Fragment
 		return v;
 	}
 	
-	/**
-	 * This method sets the options menu. Pre-Honeycomb and
-	 * Honeycomb +
-	 */
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
 	{
@@ -205,6 +203,10 @@ public class TestPagerFragment extends Fragment
 		}
 	}
 	
+	/**
+	 *  This is a convention where we want to attach arguments to
+	 *  the fragment after is created but before is added to an activity.
+	 */
 	public static TestPagerFragment newInstance(Test test)
 	{
 		Bundle args = new Bundle();

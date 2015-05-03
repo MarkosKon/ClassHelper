@@ -15,6 +15,10 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+/**
+ * The purpose of this class is to instantiate a ViewPager item for the 
+ * TestPagerFragment and respond to fragment / viewpager events.  
+ */
 public class TestPagerActivity extends AppCompatActivity
 	implements TestPagerFragment.Callbacks
 {
@@ -36,7 +40,7 @@ public class TestPagerActivity extends AppCompatActivity
 		Test test = (Test) getIntent().getSerializableExtra(TestPagerFragment.EXTRA_TEST);
 		mTests = TestDAO.get(this).getAllTests();
 		
-		// Awkward check if we are editing student details or creating a new one.
+		// Awkward check if we are editing test details or creating a new one.
 		boolean testAlreadyExists = false;
 		for(Test t : mTests)
 		{
@@ -68,10 +72,12 @@ public class TestPagerActivity extends AppCompatActivity
 			}
 		});
 		
-		mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+		mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() 
+		{
 			
 			@Override
-			public void onPageSelected(int pos) {
+			public void onPageSelected(int pos) 
+			{
 				Test t = (Test) mTests.get(pos);
 				if (t.getName() != null)
 					setTitle(t.getName());
@@ -79,14 +85,14 @@ public class TestPagerActivity extends AppCompatActivity
 			}
 			
 			@Override
-			public void onPageScrolled(int arg0, float arg1, int arg2) {
-				// TODO Auto-generated method stub
+			public void onPageScrolled(int arg0, float arg1, int arg2) 
+			{
 				
 			}
 			
 			@Override
-			public void onPageScrollStateChanged(int arg0) {
-				// TODO Auto-generated method stub
+			public void onPageScrollStateChanged(int arg0) 
+			{
 				
 			}
 		});
@@ -101,6 +107,10 @@ public class TestPagerActivity extends AppCompatActivity
 		}
 	}
 	
+	/**
+	 * This method responds to TestPagerFragment's save details button when
+	 * the application runs on a phone.
+	 */
 	@Override
 	public void onListItemUpdate(Test test) 
 	{

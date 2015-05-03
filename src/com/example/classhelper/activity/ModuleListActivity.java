@@ -13,6 +13,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.widget.Toast;
 
+/**
+ * This activity inherits from ModelListActivity and SingleFragmentActivity.
+ * Its purpose is to create a ModuleListFragment (and a ModulePagerFragment
+ * for tablets) and respond to events.
+ */
 public class ModuleListActivity extends ModelListActivity 
 	implements Callbacks<Module>, ModulePagerFragment.CallBacks
 {
@@ -23,7 +28,14 @@ public class ModuleListActivity extends ModelListActivity
 	{
 		return new ModuleListFragment();
 	}
-
+	
+	/**
+	 * This method responds to the selection of a list item from ModuleListFragment.
+	 * If the application runs on a phone (detailFragmentContainer does not exist) starts
+	 * a ModulePagerActivity and puts the current activity on the background. If the 
+	 * application runs on a tablet, fills the detailFragmentContainer with a 
+	 * ModulePagerFragment.
+	 */
 	@Override
 	public void onListItemSelected(Module module) 
 	{
@@ -50,7 +62,11 @@ public class ModuleListActivity extends ModelListActivity
 			ft.commit();
 		}
 	}
-
+	
+	/**
+	 * This method responds to ModulePagerFragment's save details button when
+	 * the application runs on a tablet.
+	 */
 	@Override
 	public void onListItemUpdate(Module module) 
 	{

@@ -20,8 +20,8 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 /**
- * The ListFragment of all models are subclasses of ModelListFragment.
- * The class contains as much code as possible to avoid duplication.
+ * Concrete list fragment of all models are subclasses of ModelListFragment.
+ * The class contains as much functionality as possible to avoid code duplication.
  */ 
 public abstract class ModelListFragment<T> extends ListFragment 
 {
@@ -74,8 +74,7 @@ public abstract class ModelListFragment<T> extends ListFragment
 	}
 	
 	/**
-	 * This method sets the options menu. Pre-Honeycomb and
-	 * Honeycomb +
+	 * This method sets the options menu.
 	 */
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
@@ -85,7 +84,7 @@ public abstract class ModelListFragment<T> extends ListFragment
 	}
 	
 	/**
-	 *  Respond to the < ActionBar item in Honeycomb+.
+	 *  Respond to the < ActionBar item.
 	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
@@ -113,7 +112,7 @@ public abstract class ModelListFragment<T> extends ListFragment
 	}
 	
 	/**
-	 *  Subclasses override this method to change the title.
+	 *  Subclasses override this method to set their own title.
 	 */
 	protected abstract int getActivityTitle();
 	

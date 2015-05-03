@@ -15,6 +15,10 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+/**
+ * The purpose of this class is to instantiate a ViewPager item for the 
+ * CoursePagerFragment and respond to fragment / viewpager events.  
+ */
 public class CoursePagerActivity extends AppCompatActivity
 	implements CoursePagerFragment.Callbacks
 {
@@ -35,6 +39,7 @@ public class CoursePagerActivity extends AppCompatActivity
 		Course course = (Course) getIntent().getSerializableExtra(CoursePagerFragment.EXTRA_COURSE);
 		mCourses = CourseDAO.get(this).getAllCourses();
 		
+		// Awkward check to see if we are editing course details or creating a new one.
 		boolean courseAlreadyExists = false;
 		for(Course c : mCourses)
 		{
@@ -99,6 +104,10 @@ public class CoursePagerActivity extends AppCompatActivity
 		}
 	}
 	
+	/**
+	 * This method responds to CoursePagerFragment's save details button when
+	 * the application runs on a phone.
+	 */
 	@Override
 	public void onListItemUpdate(Course course) 
 	{

@@ -1,6 +1,8 @@
 package com.example.classhelper.notused;
+
 /** 
- * Aborted because each concrete "ModelPagerFragment" was too specific for the superclass to exist.
+ * Aborted because each concrete "ModelPagerFragment" was too specific for 
+ * this superclass to exist.
 */
 
 //package com.example.classhelper;
@@ -16,7 +18,7 @@ package com.example.classhelper.notused;
 //
 //public abstract class ModelPagerFragment extends Fragment 
 //{
-//	public static final String EXTRA_MODEL_ID = "com.example.criminalintent.model_id";
+//	public static final String EXTRA_MODEL_ID = "com.example.classhelper.model_id";
 //	
 //	protected Model mModel;
 //	
@@ -26,10 +28,8 @@ package com.example.classhelper.notused;
 //	{
 //		View v = super.onCreateView(inflater, parent, savedInstanceState);
 //		
-//		// p.325.
 //		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
 //		{
-//			// p.327. the if on the statement inside the if.
 //			if (NavUtils.getParentActivityName(getActivity()) != null)
 //			{
 //				getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);	

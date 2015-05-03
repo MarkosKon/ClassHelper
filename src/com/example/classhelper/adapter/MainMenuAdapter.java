@@ -14,7 +14,11 @@ import android.widget.TextView;
 import com.example.classhelper.R;
 import com.example.classhelper.model.MainMenuItem;
 
-public class MainMenuAdapter extends ArrayAdapter<MainMenuItem> implements Filterable
+/**
+ * A custom adapter class used by MainMenuFragment.
+ */
+public class MainMenuAdapter extends ArrayAdapter<MainMenuItem> 
+	implements Filterable
 {
 	private Activity mAppContext;
 	
@@ -33,7 +37,7 @@ public class MainMenuAdapter extends ArrayAdapter<MainMenuItem> implements Filte
 			convertView = mAppContext.getLayoutInflater()
 				.inflate(R.layout.list_item_main_menu_item, null);
 		
-		// Configure the view for this crime.
+		// Configure the view for this MainMenuItem.
 		MainMenuItem m = getItem(position);
 		
 		ImageView iconImageView = 

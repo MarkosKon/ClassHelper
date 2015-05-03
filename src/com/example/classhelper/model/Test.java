@@ -2,6 +2,9 @@ package com.example.classhelper.model;
 
 import java.io.Serializable;
 
+/**
+ * The model for a test.
+ */
 public class Test extends Model implements Serializable
 {
 	private static final long serialVersionUID = -1701590355676931376L;

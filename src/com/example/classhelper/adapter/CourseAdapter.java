@@ -13,6 +13,9 @@ import android.widget.TextView;
 import com.example.classhelper.R;
 import com.example.classhelper.model.Course;
 
+/**
+ * A custom adapter class used by CourseListFragment and spinners.
+ */
 public class CourseAdapter extends ArrayAdapter<Course> implements Filterable
 {
 	private Activity mAppContext;

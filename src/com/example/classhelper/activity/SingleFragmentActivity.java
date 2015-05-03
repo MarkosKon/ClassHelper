@@ -7,13 +7,16 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
-// p.215.
+/**
+ * A reusable abstract activity class that can be extended by
+ * concrete activities.
+ */
 public abstract class SingleFragmentActivity extends AppCompatActivity 
 {
 	protected abstract Fragment createFragment();
 	
 	/** 
-	 * Subclasses will now choose to override this method for a different layout.  
+	 * Subclasses may choose to override this method for a different layout.  
 	 */
 	protected int getLayoutResId() 
 	{

@@ -2,6 +2,9 @@ package com.example.classhelper.model;
 
 import java.io.Serializable;
 
+/**
+ * The model for a main menu item.
+ */
 public class MainMenuItem implements Serializable 
 {
 	private static final long serialVersionUID = 696218429758515003L;

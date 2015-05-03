@@ -13,6 +13,9 @@ import android.widget.TextView;
 import com.example.classhelper.R;
 import com.example.classhelper.model.Student;
 
+/**
+ * A custom adapter class used by StudentListFragment and spinners.
+ */
 public class StudentAdapter extends ArrayAdapter<Student> implements Filterable
 {
 	private Activity mAppContext;
@@ -34,7 +37,7 @@ public class StudentAdapter extends ArrayAdapter<Student> implements Filterable
 			convertView = mAppContext.getLayoutInflater()
 				.inflate(R.layout.list_item_student, null);
 		
-		// Configure the view for this crime.
+		// Configure the view for this student.
 		Student s = getItem(position);
 		
 		TextView firstNameTextView = 

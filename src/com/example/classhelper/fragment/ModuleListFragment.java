@@ -21,9 +21,13 @@ import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 
+/**
+ * The purpose of this class is to present to the user the available 
+ * modules and delete them.
+ */
 public class ModuleListFragment extends ModelListFragment<Module>
 {
-	public static final String TAG = "StudentListFragment";
+	public static final String TAG = "ModuleListFragment";
 	private Callbacks<Module> mCallbacks;
 	
 	@SuppressWarnings("unchecked")
@@ -52,14 +56,12 @@ public class ModuleListFragment extends ModelListFragment<Module>
 		setListAdapter(adapter);
 	}
 	
-	// p.332.
 	@TargetApi (11)
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		View v = super.onCreateView(inflater, container, savedInstanceState);
 		
-		// p.353.
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB)
 		{
 			// Use floating context menus on Froyo and Gingerbread. See method onContextItemSelected for more.
@@ -120,7 +122,10 @@ public class ModuleListFragment extends ModelListFragment<Module>
 		return v;
 	}
 	
-	// p.227. The commented out stuff, the new at p.445.
+	/**
+	 * The activity that hosts the fragment responds to the selection of
+	 * a list item.
+	 */
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id)
 	{
@@ -135,6 +140,9 @@ public class ModuleListFragment extends ModelListFragment<Module>
 		updateAdapter();
 	}
 	
+	/**
+	 * The activity that hosts the fragment responds to the options menu selection.
+	 */
 	@TargetApi(11)
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
@@ -151,7 +159,10 @@ public class ModuleListFragment extends ModelListFragment<Module>
 		}
 	}
 	
-	// p.351. In this method we handle the context menu for android versions lesser that Honeycomb.
+	/**
+	 *  In this method we handle the floating context menu for android versions 
+	 *  less than Honeycomb.
+	 */
 	@Override
 	public boolean onContextItemSelected(MenuItem item)
 	{

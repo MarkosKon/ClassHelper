@@ -18,7 +18,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -35,11 +34,15 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+/**
+ * The purpose of this class is to provide create, read and update
+ * functionality for the students.
+ */
 public class StudentPagerFragment extends Fragment 
 	implements OnItemSelectedListener
 {
 	public static final String TAG = "StudentPagerFragment";
-	public static final String EXTRA_STUDENT = "com.example.classhelper.model.student";
+	public static final String EXTRA_STUDENT = "com.example.classhelper.model.Student";
 	private Student mStudent; 
 	
 	private TextView mIdTextView;
@@ -89,10 +92,8 @@ public class StudentPagerFragment extends Fragment
 	{
 		View v = inflater.inflate(R.layout.fragment_student, parent, false);
 		
-		// p.325.
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
 		{
-			// p.327. the if on the statement inside the if.
 			if (NavUtils.getParentActivityName(getActivity()) != null)
 			{
 				((AppCompatActivity)getActivity()).
@@ -224,10 +225,6 @@ public class StudentPagerFragment extends Fragment
 		return v;
 	}
 	
-	/**
-	 * This method sets the options menu. Pre-Honeycomb and
-	 * Honeycomb +
-	 */
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
 	{
@@ -236,7 +233,6 @@ public class StudentPagerFragment extends Fragment
 		inflater.inflate(R.menu.fragment_report, menu);
 	}
 	
-	// p.326.
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
@@ -260,7 +256,10 @@ public class StudentPagerFragment extends Fragment
 		}
 	}
 	
-	// TODO: find why we create a fragment this way.
+	/**
+	 *  This is a convention where we want to attach arguments to
+	 *  the fragment after is created but before is added to an activity.
+	 */
 	public static StudentPagerFragment newInstance(Student student)
 	{
 		Bundle args = new Bundle();
@@ -273,7 +272,7 @@ public class StudentPagerFragment extends Fragment
 	}
 	
 	/**
-	 * Spinner listeners from implemented interface.
+	 * Spinner listener methods.
 	 */
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int position,

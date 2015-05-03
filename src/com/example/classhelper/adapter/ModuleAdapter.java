@@ -13,6 +13,9 @@ import android.widget.TextView;
 import com.example.classhelper.R;
 import com.example.classhelper.model.Module;
 
+/**
+ * A custom adapter class used by CourseListFragment and spinners.
+ */
 public class ModuleAdapter extends ArrayAdapter<Module> implements Filterable
 {
 	private Activity mAppContext;
@@ -34,7 +37,7 @@ public class ModuleAdapter extends ArrayAdapter<Module> implements Filterable
 			convertView = mAppContext.getLayoutInflater()
 				.inflate(R.layout.list_item_module, null);
 		
-		// Configure the view for this crime.
+		// Configure the view for this module.
 		Module m = getItem(position);
 		
 		TextView nameTextView = 

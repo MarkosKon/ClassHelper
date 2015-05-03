@@ -21,6 +21,10 @@ import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 
+/**
+ * The purpose of this class is to present to the user the available 
+ * tests and delete them.
+ */
 public class TestListFragment extends ModelListFragment<Test> 
 {
 	public static final String TAG = "TestListFragment";
@@ -58,7 +62,6 @@ public class TestListFragment extends ModelListFragment<Test>
 	{
 		View v = super.onCreateView(inflater, container, savedInstanceState);
 		
-		// p.353.
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB)
 		{
 			// Use floating context menus on Froyo and Gingerbread. See method onContextItemSelected for more.
@@ -119,6 +122,10 @@ public class TestListFragment extends ModelListFragment<Test>
 		return v;
 	}
 	
+	/**
+	 * The activity that hosts the fragment responds to the selection of
+	 * a list item.
+	 */
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id)
 	{
@@ -133,6 +140,9 @@ public class TestListFragment extends ModelListFragment<Test>
 		updateAdapter();
 	}
 	
+	/**
+	 * The activity that hosts the fragment responds to the options menu selection.
+	 */
 	@TargetApi(11)
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
@@ -149,6 +159,10 @@ public class TestListFragment extends ModelListFragment<Test>
 		}
 	}
 	
+	/**
+	 *  In this method we handle the floating context menu for android versions 
+	 *  less than Honeycomb.
+	 */
 	@Override
 	public boolean onContextItemSelected(MenuItem item)
 	{

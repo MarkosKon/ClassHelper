@@ -13,6 +13,9 @@ import android.widget.TextView;
 import com.example.classhelper.R;
 import com.example.classhelper.model.Grade;
 
+/**
+ * A custom adapter class used by GradeListFragment and spinners.
+ */
 public class GradeAdapter extends ArrayAdapter<Grade> implements Filterable
 {
 	private Activity mAppContext;

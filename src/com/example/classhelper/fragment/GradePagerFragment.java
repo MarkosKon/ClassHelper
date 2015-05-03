@@ -1,7 +1,5 @@
 package com.example.classhelper.fragment;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -16,12 +14,8 @@ import com.example.classhelper.model.Test;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.graphics.pdf.PdfDocument;
-import android.graphics.pdf.PdfDocument.Page;
-import android.graphics.pdf.PdfDocument.PageInfo;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
@@ -38,11 +32,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
 
+/**
+ * The purpose of this class is to provide create, read and update
+ * functionality for the grades.
+ */
 public class GradePagerFragment extends Fragment 
 	implements OnItemSelectedListener
 {
 	public static final String TAG = "GradePagerFragment";
-	public static final String EXTRA_GRADE = "com.example.criminalintent.grade";
+	public static final String EXTRA_GRADE = "com.example.classhelper.model.Grade";
 	private Grade mGrade;
 	
 	private TextView mIdTextView;
@@ -86,10 +84,8 @@ public class GradePagerFragment extends Fragment
 	{
 		View v = inflater.inflate(R.layout.fragment_grade, parent, false);
 		
-		// p.325.
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
 		{
-			// p.327. the if on the statement inside the if.
 			if (NavUtils.getParentActivityName(getActivity()) != null)
 			{
 				((AppCompatActivity)getActivity()).
@@ -187,6 +183,10 @@ public class GradePagerFragment extends Fragment
 		}
 	}
 	
+	/**
+	 *  This is a convention where we want to attach arguments to
+	 *  the fragment after is created but before is added to an activity.
+	 */
 	public static GradePagerFragment newInstance(Grade grade)
 	{
 		Bundle args = new Bundle();
@@ -196,53 +196,6 @@ public class GradePagerFragment extends Fragment
 		fragment.setArguments(args);
 		
 		return fragment;
-	}
-	
-	@TargetApi(19)
-	public void createPdf()
-	{
-		// create a new document
-		 PdfDocument document = new PdfDocument();
-
-		 // crate a page description
-		 PageInfo pageInfo = new PageInfo.Builder(500, 500, 1).create();
-
-		 // start a page
-		 Page page = document.startPage(pageInfo);
-
-		 // draw something on the page
-		 View content = getActivity().getWindow().getDecorView();
-		 content.draw(page.getCanvas());
-
-		 // finish the page
-		 document.finishPage(page);
-		 
-		 try 
-		 {
-			 File file = new File(Environment.getExternalStoragePublicDirectory(
-			            Environment.DIRECTORY_DOWNLOADS), 
-			            "yolo3000.pdf");
-			 FileOutputStream outputStream = new FileOutputStream(file);
-			 
-			 // write the document content
-			 document.writeTo(outputStream);
-		 }
-		 catch (Exception e)
-		 {
-			 e.printStackTrace();
-		 }
-
-		 // close the document
-		 document.close();
-	}
-	
-	/* Checks if external storage is available for read and write */
-	public boolean isExternalStorageWritable() 
-	{
-	    String state = Environment.getExternalStorageState();
-	    if (Environment.MEDIA_MOUNTED.equals(state)) 
-	        return true;
-	    return false;
 	}
 	
 	/**
@@ -270,5 +223,4 @@ public class GradePagerFragment extends Fragment
 	{
 		
 	}
-
 }

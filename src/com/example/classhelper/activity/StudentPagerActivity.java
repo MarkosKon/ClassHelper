@@ -15,6 +15,10 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+/**
+ * The purpose of this class is to instantiate a ViewPager item for the 
+ * StudentPagerFragment and respond to fragment / viewpager events.  
+ */
 public class StudentPagerActivity extends AppCompatActivity 
 	implements StudentPagerFragment.Callbacks
 {

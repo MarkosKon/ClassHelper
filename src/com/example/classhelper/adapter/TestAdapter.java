@@ -13,6 +13,9 @@ import android.widget.TextView;
 import com.example.classhelper.R;
 import com.example.classhelper.model.Test;
 
+/**
+ * A custom adapter class used by TestListFragment and spinners.
+ */
 public class TestAdapter extends ArrayAdapter<Test> implements Filterable
 {
 	private Activity mAppContext;
@@ -29,10 +32,12 @@ public class TestAdapter extends ArrayAdapter<Test> implements Filterable
 	@Override 
 	public View getView(int position, View convertView, ViewGroup parent)
 	{
+		// If we weren't given a view, inflate one.
 		if (convertView == null)
 			convertView = mAppContext.getLayoutInflater()
 				.inflate(R.layout.list_item_test, null);
 		
+		// Configure the view for this test.
 		Test t = getItem(position);
 		
 		TextView nameTextView = 

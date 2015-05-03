@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 /**
  * This activity inherits from ModelListActivity and SingleFragmentActivity.
- * It's purpose is to create a StudentListFragment (and a StudentPagerFragment
+ * Its purpose is to create a StudentListFragment (and a StudentPagerFragment
  * for tablets) and respond to events.
  */
 public class StudentListActivity extends ModelListActivity

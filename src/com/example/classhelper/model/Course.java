@@ -2,6 +2,9 @@ package com.example.classhelper.model;
 
 import java.io.Serializable;
 
+/**
+ * The model for a course.
+ */
 public class Course extends Model implements Serializable
 {
 	private static final long serialVersionUID = 4383481182099146956L;

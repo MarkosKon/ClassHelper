@@ -21,6 +21,10 @@ import com.example.classhelper.data.GradeDAO;
 import com.example.classhelper.model.Grade;
 import com.example.classhelper.myinterface.Callbacks;
 
+/**
+ * The purpose of this class is to present to the user the available 
+ * grades and delete them.
+ */
 public class GradeListFragment extends ModelListFragment<Grade> 
 {
 	public static final String TAG = "GradeListFragment";
@@ -58,7 +62,6 @@ public class GradeListFragment extends ModelListFragment<Grade>
 	{
 		View v = super.onCreateView(inflater, container, savedInstanceState);
 		
-		// p.353.
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB)
 		{
 			// Use floating context menus on Froyo and Gingerbread. See method onContextItemSelected for more.
@@ -119,6 +122,10 @@ public class GradeListFragment extends ModelListFragment<Grade>
 		return v;
 	}
 	
+	/**
+	 * The activity that hosts the fragment responds to the selection of
+	 * a list item.
+	 */
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id)
 	{
@@ -133,6 +140,9 @@ public class GradeListFragment extends ModelListFragment<Grade>
 		updateAdapter();
 	}
 	
+	/**
+	 * The activity that hosts the fragment responds to the options menu selection.
+	 */
 	@TargetApi(11)
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
@@ -149,6 +159,10 @@ public class GradeListFragment extends ModelListFragment<Grade>
 		}
 	}
 	
+	/**
+	 *  In this method we handle the floating context menu for android versions 
+	 *  less than Honeycomb.
+	 */
 	@Override
 	public boolean onContextItemSelected(MenuItem item)
 	{

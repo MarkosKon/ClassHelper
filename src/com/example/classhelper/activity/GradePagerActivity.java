@@ -15,6 +15,10 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+/**
+ * The purpose of this class is to instantiate a ViewPager item for the 
+ * GradePagerFragment and respond to fragment / viewpager events.  
+ */
 public class GradePagerActivity extends AppCompatActivity 
 	implements GradePagerFragment.Callbacks
 {
@@ -67,7 +71,8 @@ public class GradePagerActivity extends AppCompatActivity
 			}
 		});
 		
-		mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+		mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() 
+		{
 			
 			@Override
 			public void onPageSelected(int pos) 
@@ -76,14 +81,14 @@ public class GradePagerActivity extends AppCompatActivity
 			}
 			
 			@Override
-			public void onPageScrolled(int arg0, float arg1, int arg2) {
-				// TODO Auto-generated method stub
+			public void onPageScrolled(int arg0, float arg1, int arg2) 
+			{
 				
 			}
 			
 			@Override
-			public void onPageScrollStateChanged(int arg0) {
-				// TODO Auto-generated method stub
+			public void onPageScrollStateChanged(int arg0) 
+			{
 				
 			}
 		});
@@ -98,6 +103,10 @@ public class GradePagerActivity extends AppCompatActivity
 		}
 	}
 	
+	/**
+	 * This method responds to GradePagerFragment's save details button when
+	 * the application runs on a phone.
+	 */
 	@Override
 	public void onListItemUpdate(Grade grade) 
 	{

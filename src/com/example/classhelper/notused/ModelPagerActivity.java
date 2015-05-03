@@ -1,4 +1,5 @@
 package com.example.classhelper.notused;
+
 /** 
  * See the comment on ModelPagerFragment class.
 */

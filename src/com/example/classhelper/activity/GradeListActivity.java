@@ -13,6 +13,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.widget.Toast;
 
+/**
+ * This activity inherits from ModelListActivity and SingleFragmentActivity.
+ * Its purpose is to create a GradeListFragment (and a GradePagerFragment
+ * for tablets) and respond to events.
+ */
 public class GradeListActivity extends ModelListActivity
 	implements Callbacks<Grade>, GradePagerFragment.Callbacks
 {
@@ -23,7 +28,14 @@ public class GradeListActivity extends ModelListActivity
 	{
 		return new GradeListFragment();
 	}
-
+	
+	/**
+	 * This method responds to the selection of a list item from GradeListFragment.
+	 * If the application runs on a phone (detailFragmentContainer does not exist) starts
+	 * a GradePagerActivity and puts the current activity on the background. If the 
+	 * application runs on a tablet, fills the detailFragmentContainer with a 
+	 * GradetPagerFragment.
+	 */
 	@Override
 	public void onListItemSelected(Grade grade) 
 	{
@@ -49,7 +61,11 @@ public class GradeListActivity extends ModelListActivity
 			ft.commit();
 		}
 	}
-
+	
+	/**
+	 * This method responds to GradePagerFragment's save details button when
+	 * the application runs on a tablet.
+	 */
 	@Override
 	public void onListItemUpdate(Grade grade) 
 	{
