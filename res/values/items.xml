@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Standalone ID p.248. -->
+<!-- A standalone ID resource for a viewpager -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
     
     <item type="id" name="viewPager">

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Alias resource that points to tablet layout on new devices (3.2 or more)-->
 <resources>
     
     <item name="activity_masterdetail" type="layout">@layout/activity_twopane</item>

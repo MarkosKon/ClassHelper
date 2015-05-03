@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- p.356. Change Background Color when selected in Context menu. -->
+<!-- Change list item's Background Color when selected in Context menu. 
+(state list drawable)-->
 <selector xmlns:android="http://schemas.android.com/apk/res/android" >
     <item 
         android:state_activated="true"

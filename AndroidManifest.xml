@@ -42,7 +42,7 @@
         <activity 
             android:name="com.example.classhelper.activity.StudentListActivity"
             android:label="@string/app_name">
-            <!-- p.326. -->
+            <!-- define the parent activity in XML with the meta-data tag.-->
             <meta-data 
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.classhelper.activity.MainMenuActivity"/>
@@ -51,7 +51,6 @@
         <activity 
             android:name="com.example.classhelper.activity.ModuleListActivity"
             android:label="@string/app_name">
-            <!-- p.326. -->
             <meta-data 
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.classhelper.activity.MainMenuActivity"/>
@@ -60,7 +59,6 @@
         <activity 
             android:name="com.example.classhelper.activity.CourseListActivity"
             android:label="@string/app_name">
-            <!-- p.326. -->
             <meta-data 
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.classhelper.activity.MainMenuActivity"/>
@@ -69,7 +67,6 @@
         <activity 
             android:name="com.example.classhelper.activity.TestListActivity"
             android:label="@string/app_name">
-            <!-- p.326. -->
             <meta-data 
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.classhelper.activity.MainMenuActivity"/>
@@ -78,7 +75,6 @@
         <activity 
             android:name="com.example.classhelper.activity.GradeListActivity"
             android:label="@string/app_name">
-            <!-- p.326. -->
             <meta-data 
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.classhelper.activity.MainMenuActivity"/>
@@ -87,7 +83,6 @@
         <activity 
             android:name="com.example.classhelper.activity.StudentPagerActivity"
             android:label="@string/app_name">
-            <!-- p.326. -->
             <meta-data 
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.classhelper.activity.StudentListActivity"/>
@@ -96,7 +91,6 @@
         <activity 
             android:name="com.example.classhelper.activity.ModulePagerActivity"
             android:label="@string/app_name">
-            <!-- p.326. -->
             <meta-data 
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.classhelper.activity.ModuleListActivity"/>
@@ -105,7 +99,6 @@
         <activity 
             android:name="com.example.classhelper.activity.CoursePagerActivity"
             android:label="@string/app_name">
-            <!-- p.326. -->
             <meta-data 
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.classhelper.activity.CourseListActivity"/>
@@ -114,7 +107,6 @@
         <activity 
             android:name="com.example.classhelper.activity.TestPagerActivity"
             android:label="@string/app_name">
-            <!-- p.326. -->
             <meta-data 
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.classhelper.activity.TestListActivity"/>
@@ -123,7 +115,6 @@
         <activity 
             android:name="com.example.classhelper.activity.GradePagerActivity"
             android:label="@string/app_name">
-            <!-- p.326. -->
             <meta-data 
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.classhelper.activity.GradeListActivity"/>

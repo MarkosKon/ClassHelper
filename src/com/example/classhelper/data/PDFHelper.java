@@ -30,8 +30,8 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class PDFHelper 
 {
-	public static final String TAG = "PDFHelper";
-	private static BaseFont mFont ;
+   public static final String TAG = "PDFHelper";
+   private static BaseFont mFont ;
    
    private Context mAppContext;
    private String mFileName;

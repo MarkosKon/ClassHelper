@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- This is an alias resource p.439 -->
+<!-- Alias resource that points to phone layout-->
 <resources>
     
     <item name="activity_masterdetail" type="layout">@layout/activity_fragment</item>

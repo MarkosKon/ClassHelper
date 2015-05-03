@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!-- Customized colors for the application. -->
 <resources>
-    <color name="primary">#8A2BE2</color>
-    <color name="primaryDark">#9400D3</color>
-    <color name="accent">#FF00FF</color>
+    <color name="primary">#8A2BE2</color>  		<!-- blueviolet -->
+    <color name="primaryDark">#9400D3</color> 	<!-- darkviolet -->
+    <color name="accent">#FF00FF</color> 		<!-- fuchsia -->
 </resources>
