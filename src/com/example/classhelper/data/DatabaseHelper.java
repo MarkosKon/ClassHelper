@@ -4,11 +4,15 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+/**
+ * This singleton class manages database creation, and provides
+ * access to the database.
+ */
 public class DatabaseHelper extends SQLiteOpenHelper 
 {
 	private static DatabaseHelper sDatabaseHelper;
 	
-	private static final String DATABASE_NAME = "ClassHelperOver9001.db"; // sorry for the database name :)
+	private static final String DATABASE_NAME = "ClassHelper.db";
 	private static final int DATABASE_VERSION = 1;
 	
 	public static synchronized DatabaseHelper get(Context context)

@@ -9,6 +9,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
+/**
+ * This singleton class uses DatabaseHelper in order to interact 
+ * with Course table.
+ */
 public class CourseDAO 
 {
 	private static CourseDAO sCourseDAO;
@@ -36,7 +40,8 @@ public class CourseDAO
 		ContentValues values = new ContentValues();
 		values.put(COLUMN_COURSE_NAME, course.getName());
 		values.put(COLUMN_COURSE_MODULE_ID, course.getModule().getId());
-		return DatabaseHelper.get(mAppContext).getWritableDatabase().insert(TABLE_COURSE, null, values);
+		return DatabaseHelper.get(mAppContext)
+				.getWritableDatabase().insert(TABLE_COURSE, null, values);
 	}
 	
 	public void delete(Course course)
@@ -55,19 +60,22 @@ public class CourseDAO
 		
 		String selection = COLUMN_COURSE_ID + " LIKE ?";
 		String[] selectionArgs = {String.valueOf(course.getId())};
-		return DatabaseHelper.get(mAppContext).getReadableDatabase().update(TABLE_COURSE, values, selection, selectionArgs);
+		return DatabaseHelper.get(mAppContext)
+				.getReadableDatabase()
+				.update(TABLE_COURSE, values, selection, selectionArgs);
 	}
 	
 	public Course getCourseById(long courseId)
 	{
 		Course course = null;
-		Cursor cursor = DatabaseHelper.get(mAppContext).getReadableDatabase().query(TABLE_COURSE, 
+		Cursor cursor = DatabaseHelper.get(mAppContext)
+							.getReadableDatabase().query(TABLE_COURSE, 
 				null, // all columns.
-				COLUMN_COURSE_ID + " = ?", // look for module id
+				COLUMN_COURSE_ID + " = ?", // look for course id
 				new String[]{String.valueOf(courseId)}, // with this value
 				null, // group by
-				null, // order by
 				null, // having
+				null, // order by
 				"1"); // limit 1 row
 		if (cursor != null && cursor.moveToFirst())
 			course = cursorToCourse(cursor);
@@ -78,13 +86,14 @@ public class CourseDAO
 	public Course getCourseByName(String courseName)
 	{
 		Course course = null;
-		Cursor cursor = DatabaseHelper.get(mAppContext).getReadableDatabase().query(TABLE_COURSE, 
+		Cursor cursor = DatabaseHelper.get(mAppContext)
+							.getReadableDatabase().query(TABLE_COURSE, 
 				null, // all columns.
 				COLUMN_COURSE_NAME + " = ?", // look for module id
 				new String[]{courseName}, // with this value
 				null, // group by
-				null, // order by
 				null, // having
+				null, // order by
 				"1"); // limit 1 row
 		if (cursor != null && cursor.moveToFirst())
 			course = cursorToCourse(cursor);
@@ -95,7 +104,8 @@ public class CourseDAO
 	public ArrayList<Course> getAllCourses()
 	{
 		ArrayList<Course> courses = new ArrayList<Course>();
-		Cursor cursor = DatabaseHelper.get(mAppContext).getReadableDatabase().query(TABLE_COURSE, 
+		Cursor cursor = DatabaseHelper.get(mAppContext)
+				.getReadableDatabase().query(TABLE_COURSE, 
 				null, 
 				null, 
 				null, 

@@ -8,6 +8,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
+/**
+ * This singleton class uses DatabaseHelper in order to interact 
+ * with Module table.
+ */
 public class ModuleDAO 
 {
 	private static ModuleDAO sModuleDAO;
@@ -33,14 +37,16 @@ public class ModuleDAO
 	{
 		ContentValues values = new ContentValues();
 		values.put(COLUMN_MODULE_NAME, module.getName());
-		return DatabaseHelper.get(mAppContext).getWritableDatabase().insert(TABLE_MODULE, null, values);
+		return DatabaseHelper.get(mAppContext)
+				.getWritableDatabase().insert(TABLE_MODULE, null, values);
 	}
 	
 	public void delete(Module module)
 	{
 		String selection = COLUMN_MODULE_ID + " LIKE ?";
 		String[] selectionArgs = {String.valueOf(module.getId())};
-		DatabaseHelper.get(mAppContext).getWritableDatabase().delete(TABLE_MODULE, selection, selectionArgs);
+		DatabaseHelper.get(mAppContext)
+			.getWritableDatabase().delete(TABLE_MODULE, selection, selectionArgs);
 	}
 	
 	public int update(Module module)
@@ -50,23 +56,24 @@ public class ModuleDAO
 		
 		String selection = COLUMN_MODULE_ID + " LIKE ?";
 		String[] selectionArgs = {String.valueOf(module.getId())};
-		return DatabaseHelper.get(mAppContext).getReadableDatabase().update(TABLE_MODULE, values, selection, selectionArgs);
+		return DatabaseHelper.get(mAppContext)
+				.getReadableDatabase()
+				.update(TABLE_MODULE, values, selection, selectionArgs);
 	}
 	
 	public Module getModuleById(long moduleId)
 	{
 		Module module = null;
-		Cursor cursor = DatabaseHelper.get(mAppContext).getReadableDatabase().query(TABLE_MODULE, 
+		Cursor cursor = DatabaseHelper.get(mAppContext)
+							.getReadableDatabase().query(TABLE_MODULE, 
 				null, // all columns.
 				COLUMN_MODULE_ID + " = ?", // look for module id
 				new String[]{String.valueOf(moduleId)}, // with this value
 				null, // group by
-				null, // order by
 				null, // having
+				null, // order by
 				"1"); // limit 1 row
 		if (cursor != null && cursor.moveToFirst())
-			// cursor.moveToFirst();
-		
 			module = cursorToModule(cursor);
 		
 		return module;
@@ -75,17 +82,16 @@ public class ModuleDAO
 	public Module getModuleByName(String moduleName)
 	{
 		Module module = null;
-		Cursor cursor = DatabaseHelper.get(mAppContext).getReadableDatabase().query(TABLE_MODULE, 
+		Cursor cursor = DatabaseHelper.get(mAppContext)
+							.getReadableDatabase().query(TABLE_MODULE, 
 				null, // all columns.
 				COLUMN_MODULE_NAME + " = ?", // look for module id
 				new String[]{moduleName}, // with this value
 				null, // group by
-				null, // order by
 				null, // having
+				null, // order by
 				"1"); // limit 1 row
 		if (cursor != null && cursor.moveToFirst())
-			// cursor.moveToFirst();
-		
 			module = cursorToModule(cursor);
 		
 		return module;
@@ -94,7 +100,8 @@ public class ModuleDAO
 	public ArrayList<Module> getAllModules()
 	{
 		ArrayList<Module> modules = new ArrayList<Module>();
-		Cursor cursor = DatabaseHelper.get(mAppContext).getReadableDatabase().query(TABLE_MODULE, 
+		Cursor cursor = DatabaseHelper.get(mAppContext)
+							.getReadableDatabase().query(TABLE_MODULE, 
 				null, 
 				null, 
 				null, 
@@ -103,7 +110,6 @@ public class ModuleDAO
 				COLUMN_MODULE_NAME + " asc");
 		if (cursor != null && cursor.moveToFirst())
 		{
-			// cursor.moveToFirst();
 			while(!cursor.isAfterLast())
 			{
 				Module module = cursorToModule(cursor);

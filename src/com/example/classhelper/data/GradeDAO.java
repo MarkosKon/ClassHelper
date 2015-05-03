@@ -10,6 +10,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
+/**
+ * This singleton class uses DatabaseHelper in order to interact 
+ * with Grade table.
+ */
 public class GradeDAO 
 {
 	private static GradeDAO sGradeDAO;
@@ -39,7 +43,8 @@ public class GradeDAO
 		values.put(COLUMN_GRADE_VALUE, grade.getGradeValue());
 		values.put(COLUMN_GRADE_STUDENT_ID, grade.getStudent().getId());
 		values.put(COLUMN_GRADE_TEST_ID, grade.getTest().getId());
-		return DatabaseHelper.get(mAppContext).getWritableDatabase().insert(TABLE_GRADE, null, values);
+		return DatabaseHelper.get(mAppContext)
+				.getWritableDatabase().insert(TABLE_GRADE, null, values);
 	}
 	
 	public void delete(Grade grade)
@@ -59,19 +64,22 @@ public class GradeDAO
 		
 		String selection = COLUMN_GRADE_ID + " LIKE ?";
 		String[] selectionArgs = {String.valueOf(grade.getId())};
-		return DatabaseHelper.get(mAppContext).getReadableDatabase().update(TABLE_GRADE, values, selection, selectionArgs);
+		return DatabaseHelper.get(mAppContext)
+				.getReadableDatabase()
+				.update(TABLE_GRADE, values, selection, selectionArgs);
 	}
 	
 	public Grade getGradeById(long gradeId)
 	{
 		Grade grade = null;
-		Cursor cursor = DatabaseHelper.get(mAppContext).getReadableDatabase().query(TABLE_GRADE, 
+		Cursor cursor = DatabaseHelper.get(mAppContext)
+							.getReadableDatabase().query(TABLE_GRADE, 
 				null, // all columns.
-				COLUMN_GRADE_ID + " = ?", // look for module id
+				COLUMN_GRADE_ID + " = ?", // look for grade id
 				new String[]{String.valueOf(gradeId)}, // with this value
 				null, // group by
-				null, // order by
 				null, // having
+				null, // order by
 				"1"); // limit 1 row
 		if (cursor != null && cursor.moveToFirst())
 			grade = cursorToGrade(cursor);
@@ -82,9 +90,10 @@ public class GradeDAO
 	public ArrayList<Grade> getGradesByTest(Test test)
 	{
 		ArrayList<Grade> grades = new ArrayList<Grade>();
-		Cursor cursor = DatabaseHelper.get(mAppContext).getReadableDatabase().query(TABLE_GRADE, 
+		Cursor cursor = DatabaseHelper.get(mAppContext)
+							.getReadableDatabase().query(TABLE_GRADE, 
 				null, // all columns.
-				COLUMN_GRADE_TEST_ID + " = ?", // look for module id
+				COLUMN_GRADE_TEST_ID + " = ?", // look for test id
 				new String[]{String.valueOf(test.getId())}, // with this value
 				null, // group by
 				null, // having
@@ -106,9 +115,10 @@ public class GradeDAO
 	public ArrayList<Grade> getGradesByStudent(Student student)
 	{
 		ArrayList<Grade> grades = new ArrayList<Grade>();
-		Cursor cursor = DatabaseHelper.get(mAppContext).getReadableDatabase().query(TABLE_GRADE, 
+		Cursor cursor = DatabaseHelper.get(mAppContext)
+							.getReadableDatabase().query(TABLE_GRADE, 
 				null, // all columns.
-				COLUMN_GRADE_STUDENT_ID + " = ?", // look for module id
+				COLUMN_GRADE_STUDENT_ID + " = ?", // look for student id
 				new String[]{String.valueOf(student.getId())}, // with this value
 				null, // group by
 				null, // having
@@ -130,7 +140,8 @@ public class GradeDAO
 	public ArrayList<Grade> getAllGrades()
 	{
 		ArrayList<Grade> grades = new ArrayList<Grade>();
-		Cursor cursor = DatabaseHelper.get(mAppContext).getReadableDatabase().query(TABLE_GRADE, 
+		Cursor cursor = DatabaseHelper.get(mAppContext)
+							.getReadableDatabase().query(TABLE_GRADE, 
 				null, 
 				null, 
 				null, 

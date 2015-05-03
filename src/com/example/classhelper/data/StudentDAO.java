@@ -9,6 +9,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
+/**
+ * This singleton class uses DatabaseHelper in order to interact 
+ * with Student table.
+ */
 public class StudentDAO 
 {
 	private static StudentDAO sStudentDAO;
@@ -42,7 +46,8 @@ public class StudentDAO
 		values.put(COLUMN_STUDENT_PHONE_NUMBER, student.getPhoneNumber());
 		values.put(COLUMN_STUDENT_EMAIL, student.getEmail());
 		values.put(COLUMN_STUDENT_MODULE_ID, student.getModule().getId());
-		return DatabaseHelper.get(mAppContext).getWritableDatabase().insert(TABLE_STUDENT, null, values);
+		return DatabaseHelper.get(mAppContext)
+				.getWritableDatabase().insert(TABLE_STUDENT, null, values);
 	}
 	
 	public void delete(Student student)
@@ -64,19 +69,22 @@ public class StudentDAO
 		
 		String selection = COLUMN_STUDENT_ID + " LIKE ?";
 		String[] selectionArgs = {String.valueOf(student.getId())};
-		return DatabaseHelper.get(mAppContext).getReadableDatabase().update(TABLE_STUDENT, values, selection, selectionArgs);
+		return DatabaseHelper.get(mAppContext)
+				.getReadableDatabase()
+				.update(TABLE_STUDENT, values, selection, selectionArgs);
 	}
 	
 	public Student getStudentById(long studentId)
 	{
 		Student student = null;
-		Cursor cursor = DatabaseHelper.get(mAppContext).getReadableDatabase().query(TABLE_STUDENT, 
+		Cursor cursor = DatabaseHelper.get(mAppContext)
+							.getReadableDatabase().query(TABLE_STUDENT, 
 				null, // all columns.
-				COLUMN_STUDENT_ID + " = ?", // look for module id
+				COLUMN_STUDENT_ID + " = ?", // look for student id
 				new String[]{String.valueOf(studentId)}, // with this value
 				null, // group by
-				null, // order by
 				null, // having
+				null, // order by
 				"1"); // limit 1 row
 		if (cursor != null && cursor.moveToFirst())
 			student = cursorToStudent(cursor);
@@ -87,16 +95,17 @@ public class StudentDAO
 	public Student getStudentByLastName(String studentLastName)
 	{
 		Student student = null;
-		Cursor cursor = DatabaseHelper.get(mAppContext).getReadableDatabase().query(TABLE_STUDENT, 
+		Cursor cursor = DatabaseHelper.get(mAppContext)
+							.getReadableDatabase().query(TABLE_STUDENT, 
 				null, // all columns.
-				COLUMN_STUDENT_LAST_NAME + " = ?", // look for module id
+				COLUMN_STUDENT_LAST_NAME + " = ?", // look for student name
 				new String[]{studentLastName}, // with this value
 				null, // group by
-				null, // order by
 				null, // having
+				null, // order by
 				"1"); // limit 1 row
 		if (cursor != null && cursor.moveToFirst())
-			student = cursorToStudent(cursor); // Only the first student is returned in this way.
+			student = cursorToStudent(cursor); 
 		
 		return student;
 	}
@@ -104,13 +113,14 @@ public class StudentDAO
 	public ArrayList<Student> getStudentsByModule(long moduleId)
 	{
 		ArrayList<Student> students = new ArrayList<Student>();
-		Cursor cursor = DatabaseHelper.get(mAppContext).getReadableDatabase().query(TABLE_STUDENT, 
+		Cursor cursor = DatabaseHelper.get(mAppContext)
+							.getReadableDatabase().query(TABLE_STUDENT, 
 				null, // all columns.
 				COLUMN_STUDENT_MODULE_ID + " = ?", // look for module id
 				new String[]{String.valueOf(moduleId)}, // with this value
 				null, // group by
-				null, // order by
 				null, // having
+				null, // order by
 				null); // limit 1 row
 		if (cursor != null && cursor.moveToFirst())
 		{
@@ -128,7 +138,8 @@ public class StudentDAO
 	public ArrayList<Student> getAllStudents()
 	{
 		ArrayList<Student> students = new ArrayList<Student>();
-		Cursor cursor = DatabaseHelper.get(mAppContext).getReadableDatabase().query(TABLE_STUDENT, 
+		Cursor cursor = DatabaseHelper.get(mAppContext)
+							.getReadableDatabase().query(TABLE_STUDENT, 
 				null, 
 				null, 
 				null, 
