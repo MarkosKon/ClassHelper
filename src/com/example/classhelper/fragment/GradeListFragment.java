@@ -28,7 +28,6 @@ import com.example.classhelper.myinterface.Callbacks;
 public class GradeListFragment extends ModelListFragment<Grade> 
 {
 	public static final String TAG = "GradeListFragment";
-	private Callbacks<Grade> mCallbacks;
 	
 	@SuppressWarnings("unchecked")
 	@Override

@@ -28,7 +28,6 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 public class StudentListFragment extends ModelListFragment<Student> 
 {
 	public static final String TAG = "StudentListFragment";
-	private Callbacks<Student> mCallbacks;
 	
 	@SuppressWarnings("unchecked")
 	@Override
