@@ -8,21 +8,19 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.os.Environment;
 
+import com.example.classhelper.R;
 import com.example.classhelper.model.Grade;
 import com.example.classhelper.model.Model;
 import com.example.classhelper.model.Student;
 import com.example.classhelper.model.Test;
-import com.itextpdf.text.Anchor;
 import com.itextpdf.text.BadElementException;
-import com.itextpdf.text.Chapter;
+import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
-import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
-import com.itextpdf.text.Section;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
@@ -39,61 +37,79 @@ public class PDFHelper
    private Document mDocument;
    
    public PDFHelper(Student student, Context context)
+   		throws IOException, DocumentException
    {
-	   mModel = student;
-	   mAppContext = context;
-	   mFileName = student.toString() + " - Grades.pdf";
 	   try
 	   {
-		   mDocument = new Document();
-		   File file = new File(Environment.getExternalStoragePublicDirectory(
-		            Environment.DIRECTORY_DOWNLOADS), 
-		            mFileName);
-		   FileOutputStream outputStream = new FileOutputStream(file);
-		   PdfWriter.getInstance(mDocument, outputStream);
-		   addMetaData();
-		   //addStudentContent(mDocument);
-		   mDocument.close();
+		   // Use custom unicode font for Greek character support.
+		   mFont = BaseFont.createFont("/assets/fonts/arial.ttf", 
+				   	  "Cp1253", 
+					  BaseFont.EMBEDDED);
 	   }
-	   catch (Exception e)
+	   catch (IOException e)
 	   {
 		   e.printStackTrace();
 	   }
+	   mModel = student;
+	   mAppContext = context;
+	   mFileName = student.toString() + " - Grades.pdf";
    }
    
-   public PDFHelper(Test test, Context context)
+   public PDFHelper(Test test, Context context) 
+		   throws IOException, DocumentException
    {
+	   try
+	   {
+		   // Use custom unicode font for Greek character support.
+		   mFont = BaseFont.createFont("/assets/fonts/arial.ttf", 
+				   	  "Cp1253", 
+					  BaseFont.EMBEDDED);
+	   }
+	   catch (IOException e)
+	   {
+		   e.printStackTrace();
+	   }
 	   mModel = test;
 	   mAppContext = context;
 	   mFileName = test.getCourse().toString() +
 			       " - " + 
-			       test.toString() + 
+			       test.getName() + 
 			       "- Grades.pdf";
    }
    
-   public void createTestReport() throws IOException
+   public boolean createReport() throws IOException
    {
 	   try
 	   {
-		   mFont = BaseFont.createFont("/assets/fonts/arial.ttf", 
-				   	  "Cp1253", 
-					  BaseFont.EMBEDDED);
 		   mDocument = new Document();
-		   File file = new File(Environment.getExternalStoragePublicDirectory(
-		            Environment.DIRECTORY_DOWNLOADS), 
-		            mFileName);
-		   FileOutputStream outputStream = new FileOutputStream(file);
-		   PdfWriter.getInstance(mDocument, outputStream);
+		   
+		   // If the SD card in mounted on the device.
+		   if (isExternalStorageWritable())
+		   {
+			   File file = new File(Environment.getExternalStoragePublicDirectory(
+			            Environment.DIRECTORY_DOWNLOADS), 
+			            mFileName);
+			   FileOutputStream outputStream = new FileOutputStream(file);
+			   PdfWriter.getInstance(mDocument, outputStream);
+		   }
+		   else
+			   return false;
+		   
 		   mDocument.open();
 		   addMetaData();
-		   addTestContent(mDocument);
+		   if (mModel instanceof Test)
+			   addTestContent(mDocument);
+		   else if (mModel instanceof Student)
+		   		addStudentContent(mDocument);
 		   mDocument.close();
 	   }
 	   catch (Exception e)
 	   {
 		   e.printStackTrace();
 	   }
+	   return true;
    }
+
    /**
     * This method adds meta-data to the PDF document which can be
     * viewed under File -> Properties. 
@@ -110,68 +126,129 @@ public class PDFHelper
    private void addTestContent(Document document) 
 		   throws DocumentException, BadElementException 
    {
-	   Anchor anchor = new Anchor("First Chapter");
-	   anchor.setName("First Chapter");
-		
-	   // Second parameter is the number of the chapter
-	   Chapter catPart = new Chapter(new Paragraph(anchor), 1);
-		
-	   Paragraph subPara = new Paragraph("Subcategory 1", new Font(mFont, 16));
-	   Section subCatPart = catPart.addSection(subPara);
-	   subCatPart.add(new Paragraph("\u039d\u03cd\u03c6\u03b5\u03c2", new Font(mFont, 16)));
-		
-	   subPara = new Paragraph("Subcategory 2", new Font(mFont, 16));
-	   subCatPart = catPart.addSection(subPara);
-	   subCatPart.add(new Paragraph("Paragraph 1"));
-	   subCatPart.add(new Paragraph("Paragraph 2"));
-	   subCatPart.add(new Paragraph("Paragraph 3"));
-		
-	   // add a table
+	   String string = ((Test) mModel).getCourse().getModule().getName();
+	   Paragraph paragraph = new Paragraph(mAppContext.getResources()
+			   								.getString(R.string.student_module_id_label) + 
+			   								": " + string, 
+   											new Font(mFont, 16)); 
+	   										// Oups :/
+	   document.add(paragraph);
+	   
+	   string = ((Test) mModel).getCourse().getName();
+	   paragraph = new Paragraph(mAppContext.getResources().getString(R.string.test_course_id_label) + 
+			   						": " + string, 
+			   						new Font(mFont, 16));
+	   document.add(paragraph);
+	   
+	   string = ((Test) mModel).getName();
+	   paragraph = new Paragraph(mAppContext.getResources().getString(R.string.grade_test_id_label) + 
+			   					 ": " + string,
+			   					 new Font(mFont, 16));
+	   document.add(paragraph);
+	   
+	   document.add(Chunk.NEWLINE);
+	   
+	   // Add a table
 	   ArrayList<Grade> grades = GradeDAO.get(mAppContext)
 			   .getGradesByTest((Test) mModel);
-	   PdfPTable table = new PdfPTable(2);
+	   PdfPTable table = new PdfPTable(3); // Number of table columns.
 	   
-	   PdfPCell c1 = new PdfPCell(new Phrase("Student Name"));
+	   PdfPCell c1 = new PdfPCell(new Phrase(mAppContext.getResources()
+												.getString(R.string.model_id_label),
+											 new Font(mFont, 14)));
 	   c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 	   table.addCell(c1);
 		
-	   c1 = new PdfPCell(new Phrase("Grade"));
+	   c1 = new PdfPCell(new Phrase("Student Name"));
 	   c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 	   table.addCell(c1);
+	   
+	   c1 = new PdfPCell(new Phrase(mAppContext.getResources()
+										.getString(R.string.grade_value_label),
+								    new Font(mFont, 14)));
+	   c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	   table.addCell(c1);
+	   
 	   table.setHeaderRows(1);
 	   
 	   for (Grade g : grades)
 	   {
+		   table.addCell(String.valueOf(g.getStudent().getId()));
 		   table.addCell(new PdfPCell(new Phrase(g.getStudent().toString(),
-				   								 new Font(mFont, 12))));
+				   								 	new Font(mFont, 12))));
 		   table.addCell(String.valueOf(g.getGradeValue()));
 	   }
-	   subCatPart.add(table);
-		
-	   // now add all this to the document
-	   document.add(catPart);
-		
-	   // Next section
-	   anchor = new Anchor("Second Chapter");
-	   anchor.setName("Second Chapter");
-		
-	   // Second parameter is the number of the chapter
-	   catPart = new Chapter(new Paragraph(anchor), 1);
-		
-	   subPara = new Paragraph("Subcategory", new Font(mFont, 16));
-	   subCatPart = catPart.addSection(subPara);
-	   subCatPart.add(new Paragraph("This is a very important message"));
-		
-	   // now add all this to the document
-	   document.add(catPart);
+	   document.add(table);
    }
 	
+
+   private void addStudentContent(Document document) 
+   		throws DocumentException, BadElementException
+   {
+	   String string = ((Student) mModel).getModule().getName();
+	   Paragraph paragraph = new Paragraph(mAppContext.getResources()
+			   								.getString(R.string.student_module_id_label) +
+			   							   ": " + string,
+			   							   new Font(mFont, 16));
+	   document.add(paragraph);
+	   
+	   string = String.valueOf(((Student) mModel).getId());
+	   paragraph = new Paragraph(mAppContext.getResources()
+			   								.getString(R.string.model_id_label) + string,
+			   					 new Font(mFont, 16));
+	   document.add(paragraph);
+	   
+	   string = ((Student) mModel).toString();
+	   paragraph = new Paragraph(mAppContext.getResources()
+					.getString(R.string.grade_student_id_label) +
+				   ": " + string,
+				   new Font(mFont, 16));
+	   document.add(paragraph);
+	   
+	   document.add(Chunk.NEWLINE);
+	   
+	   // Add a table.
+	   ArrayList<Grade> grades = GradeDAO.get(mAppContext)
+			   .getGradesByStudent((Student) mModel);
+	   PdfPTable table = new PdfPTable(3); // Number of table columns.
+	   
+	   PdfPCell c1 = new PdfPCell(new Phrase(mAppContext.getResources()
+			   									.getString(R.string.course_name_label),
+			   								 new Font(mFont, 14)));
+	   c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	   table.addCell(c1);
+		
+	   c1 = new PdfPCell(new Phrase(mAppContext.getResources()
+										.getString(R.string.test_name_label),
+										new Font(mFont, 14)));
+	   c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	   table.addCell(c1);
+	   
+	   c1 = new PdfPCell(new Phrase(mAppContext.getResources()
+										.getString(R.string.grade_value_label),
+										new Font(mFont, 14)));
+	   c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	   table.addCell(c1);
+	   
+	   table.setHeaderRows(1);
+	   
+	   for (Grade g : grades)
+	   {
+		   table.addCell(new PdfPCell(new Phrase(g.getTest().getCourse().getName(),
+				   								 new Font(mFont, 12))));
+		   table.addCell(new PdfPCell(new Phrase(g.getTest().getName(),
+				   								 	new Font(mFont, 12))));
+		   table.addCell(String.valueOf(g.getGradeValue()));
+	   }
+	   document.add(table);
+   }
+   
 	/* Checks if external storage is available for read and write */
-	private boolean isExternalStorageWritable() 
-	{
+   private boolean isExternalStorageWritable() 
+   {
 	    String state = Environment.getExternalStorageState();
 	    if (Environment.MEDIA_MOUNTED.equals(state)) 
 	        return true;
 	    return false;
-	}
+    }
 }

@@ -1,6 +1,5 @@
 package com.example.classhelper.fragment;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -188,15 +187,15 @@ public class TestPagerFragment extends Fragment
 					NavUtils.navigateUpFromSameTask(getActivity());
 				return true;
 			case R.id.menu_item_create_report:
-				PDFHelper pdfHelper = new PDFHelper(mTest, getActivity());
-			try 
-			{
-				pdfHelper.createTestReport();
-			} 
-			catch (IOException e) 
-			{
-				e.printStackTrace();
-			}
+				try 
+				{
+					PDFHelper pdfHelper = new PDFHelper(mTest, getActivity());
+					pdfHelper.createReport();
+				} 
+				catch (Exception e) 
+				{
+					e.printStackTrace();
+				}
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);

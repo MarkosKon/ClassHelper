@@ -249,7 +249,15 @@ public class StudentPagerFragment extends Fragment
 				startActivity(i);
 				return true;
 			case R.id.menu_item_create_report:
-				PDFHelper pdfHelper = new PDFHelper(mStudent, getActivity());
+				try 
+				{
+					PDFHelper pdfHelper = new PDFHelper(mStudent, getActivity());
+					pdfHelper.createReport();
+				} 
+				catch (Exception e) 
+				{
+					e.printStackTrace();
+				}
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
